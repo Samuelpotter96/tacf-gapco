@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TACF GAPCO</title>
+  <meta name="description" content="Calculadora do TACF (NSCA 54-3/2026) do Grupamento de Apoio de Canoas.">
+  <meta name="theme-color" content="#0A1628">
+  <link rel="icon" href="assets/fab.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <img class="marca-dagua" src="assets/fab.svg" alt="" aria-hidden="true">
+
+  <header class="topo">
+    <img class="topo-logo" src="assets/fab.svg" alt="Símbolo da Força Aérea Brasileira">
+    <p class="topo-om">Grupamento de Apoio de Canoas · GAPCO</p>
+    <h1>Calculadora TACF</h1>
+    <p class="topo-sub">Teste de Avaliação do Condicionamento Físico</p>
+    <span class="selo">NSCA 54-3/2026</span>
+  </header>
+
+  <main class="app">
+    <section class="card">
+      <h2><span class="num">1</span> Seus dados</h2>
+      <div class="grade">
+        <label class="campo">Sexo
+          <select id="sexo">
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+          </select>
+        </label>
+        <label class="campo"><span>Idade <small>(anos)</small></span>
+          <input id="idade" type="number" inputmode="numeric" min="18" max="75" placeholder="Ex.: 32">
+        </label>
+        <label class="campo"><span>Estatura <small>(cm)</small></span>
+          <input id="estatura" type="number" inputmode="decimal" min="140" max="220" step="0.5" placeholder="Ex.: 175">
+        </label>
+        <label class="campo"><span>FC de repouso <small>(opcional, bpm)</small></span>
+          <input id="fc" type="number" inputmode="numeric" min="30" max="220" placeholder="Ex.: 68">
+          <span class="previa" id="previa-fc"></span>
+        </label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2><span class="num">2</span> Seus resultados</h2>
+      <div class="grade">
+        <label class="campo"><span>Cintura <small>(cm)</small></span>
+          <input id="cintura" type="number" inputmode="decimal" min="50" max="150" step="0.5" placeholder="Ex.: 86">
+          <span class="previa" id="previa-cintura"></span>
+          <span class="falta" id="falta-cintura"></span>
+        </label>
+        <div class="campo">
+          <label for="flexao">Flexão de braço <small>(repetições)</small></label>
+          <input id="flexao" type="number" inputmode="numeric" min="0" max="150" placeholder="Ex.: 30">
+          <div class="alternar alternar-mini" id="grupo-joelhos" hidden>
+            <button type="button" class="ativo" id="btn-padrao" aria-pressed="true">Padrão</button>
+            <button type="button" id="btn-joelhos" aria-pressed="false">Joelhos apoiados</button>
+          </div>
+          <span class="nota" id="nota-joelhos" hidden>Art. 109 — transição só para militares recém-ingressas de cursos de até 180 dias.</span>
+          <span class="previa" id="previa-flexao"></span>
+          <span class="falta" id="falta-flexao"></span>
+        </div>
+        <label class="campo"><span>Abdominal <small>(repetições)</small></span>
+          <input id="abdominal" type="number" inputmode="numeric" min="0" max="150" placeholder="Ex.: 40">
+          <span class="previa" id="previa-abdominal"></span>
+          <span class="falta" id="falta-abdominal"></span>
+        </label>
+        <div class="campo">
+          <span class="rotulo">Prova aeróbica</span>
+          <div class="alternar">
+            <button type="button" class="ativo" id="btn-corrida" aria-pressed="true">Corrida 12 min</button>
+            <button type="button" id="btn-marcha" aria-pressed="false">Marcha 4,8 km</button>
+          </div>
+          <div id="box-corrida">
+            <input id="corrida" type="number" inputmode="numeric" min="1" max="5000" placeholder="Distância em metros · ex.: 2400" aria-label="Distância da corrida em metros">
+          </div>
+          <div id="box-marcha" class="tempo" hidden>
+            <input id="marcha-min" type="number" inputmode="numeric" min="10" max="120" placeholder="min" aria-label="Minutos da marcha">
+            <span>:</span>
+            <input id="marcha-seg" type="number" inputmode="numeric" min="0" max="59" placeholder="seg" aria-label="Segundos da marcha">
+          </div>
+          <span class="previa" id="previa-aerobico"></span>
+          <span class="falta" id="falta-aerobico"></span>
+        </div>
+      </div>
+
+      <p class="alerta" id="alerta" role="alert" hidden></p>
+      <div class="acoes">
+        <button type="button" class="btn-principal" id="btn-calcular">Calcular</button>
+        <button type="button" class="btn-sec" id="btn-limpar">Limpar</button>
+      </div>
+    </section>
+
+    <section class="card resultado" id="resultado" hidden aria-live="polite">
+      <h2><span class="num">3</span> Resultado</h2>
+      <p class="res-info" id="res-info"></p>
+      <div class="res-topo">
+        <div class="res-grau">
+          <span id="res-grau">0,0</span>
+          <small>de 100 pontos</small>
+        </div>
+        <div class="res-status">
+          <span class="badge" id="res-apto"></span>
+          <span class="res-mencao" id="res-mencao"></span>
+        </div>
+      </div>
+      <p class="res-destaque" id="res-destaque" hidden></p>
+      <p class="res-motivo" id="res-motivo" hidden></p>
+      <p class="res-proxima" id="res-proxima" hidden></p>
+      <div class="itens" id="res-itens"></div>
+    </section>
+
+    <section class="card" id="card-metas" hidden>
+      <h2><span class="num">★</span> Metas para o seu perfil</h2>
+      <p class="metas-desc" id="metas-desc"></p>
+      <div class="tabela-wrap">
+        <table class="metas">
+          <thead>
+            <tr><th>Prova</th><th class="c-s">S</th><th class="c-b">B</th><th class="c-mb">MB</th><th class="c-e">E</th><th class="c-max">Máx</th></tr>
+          </thead>
+          <tbody id="metas-corpo"></tbody>
+        </table>
+      </div>
+      <p class="legenda">S Satisfatório · B Bom · MB Muito Bom · E Excelente. Para ser APTO: nenhuma prova zerada e grau final ≥ 20.</p>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p class="assinatura">Desenvolvido por <strong>3S Potter</strong></p>
+    <p>Grupamento de Apoio de Canoas · Força Aérea Brasileira</p>
+    <p class="aviso">Ferramenta de apoio, não oficial. O resultado que vale é o da comissão aplicadora do TACF.</p>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
