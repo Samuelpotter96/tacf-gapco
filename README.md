@@ -22,7 +22,7 @@ js/tabelas.js     tabelas oficiais (somente dados)
 js/calculo.js     cálculo do TACF (sem DOM)
 js/metas.js       metas por menção (sem DOM)
 js/app.js         liga o formulário ao cálculo
-assets/fab.svg    gládio alado (marca d'água e ícone)
+assets/gladio.png  gládio alado (marca d'água e ícone)
 ```
 
 Site estático, sem servidor nem banco de dados: nada do que é digitado sai do navegador.
