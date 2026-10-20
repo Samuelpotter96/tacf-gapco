@@ -2,8 +2,14 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GAP-CO | TACF - Nossa Missão é Apoiar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#061426">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TACF 2025">
+  <meta name="format-detection" content="telephone=no">
+  <title>GAP-CO | TACF 2025 - Nossa Missão é Apoiar</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts: Inter e Chakra Petch (Militar/Aeronáutico) -->
@@ -40,7 +46,9 @@
   </script>
 
   <style>
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: 6rem; }
     body {
+      overflow-x: hidden;
       background-color: #07172b;
       color: #f8fafc;
       font-family: 'Inter', sans-serif;
@@ -71,6 +79,22 @@
       filter: drop-shadow(0 4px 14px rgba(244, 180, 0, 0.3));
     }
 
+    /* ---------- Responsividade (celular, tablet e notebook) ---------- */
+    /* Evita o zoom automático do iPhone ao tocar em campos (exige fonte >= 16px) */
+    @media (max-width: 1023px) {
+      input[type="text"], input[type="number"], select { font-size: 16px !important; }
+    }
+    /* Controles deslizantes mais fáceis de usar com o dedo */
+    input[type="range"] { height: 28px; touch-action: pan-y; }
+    button, a, label { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+    /* Remove setas dos campos numéricos (mais espaço no celular) */
+    input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+    /* Espaço para a barra fixa de resultado no celular/tablet */
+    @media (max-width: 1023px) { body { padding-bottom: calc(76px + env(safe-area-inset-bottom)); } }
+    .safe-bottom { padding-bottom: calc(0.6rem + env(safe-area-inset-bottom)); }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+
     /* Otimização Estrita para Impressão da Ficha do TACF */
     @media print {
       body {
@@ -83,6 +107,7 @@
       .print-only {
         display: block !important;
       }
+      body { padding-bottom: 0 !important; }
       .glass-panel, .glass-hero {
         background: #ffffff !important;
         color: #000000 !important;
@@ -95,39 +120,39 @@
 <body class="min-h-screen flex flex-col antialiased selection:bg-amber-400 selection:text-slate-950">
 
   <!-- ==================== TOPO & CABEÇALHO COM BRASÃO OFICIAL ==================== -->
-  <header class="no-print sticky top-0 z-50 bg-[#061426]/95 backdrop-blur-md border-b border-amber-500/30 shadow-2xl">
+  <header class="no-print sticky top-0 z-50 pt-[env(safe-area-inset-top)] bg-[#061426]/95 backdrop-blur-md border-b border-amber-500/30 shadow-2xl">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20 sm:h-24">
+      <div class="flex items-center justify-between gap-2 h-16 sm:h-24">
         
         <!-- Canto Superior Esquerdo: Brasão Oficial GAP-CO e Identificação Militar -->
-        <div class="flex items-center space-x-3 sm:space-x-4">
+        <div class="flex items-center space-x-3 sm:space-x-4 min-w-0">
           <!-- Brasão do GAP-CO com imagem e fallback SVG de alta precisão militar -->
           <div class="relative flex-shrink-0 flex items-center justify-center">
             <img 
               src="data:image/png;base64,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" 
               alt="Brasão GAP-CO" 
               id="gapco-img-badge"
-              class="h-16 sm:h-20 w-auto object-contain badge-shadow transition-transform hover:scale-105 duration-300"
+              class="h-12 sm:h-20 w-auto object-contain badge-shadow transition-transform hover:scale-105 duration-300"
             />
           </div>
 
-          <div class="border-l border-slate-700/80 pl-3 sm:pl-4">
+          <div class="border-l border-slate-700/80 pl-3 sm:pl-4 min-w-0">
             <div class="flex items-center space-x-2">
-              <span class="text-[11px] sm:text-xs font-bold tracking-widest text-amber-400 uppercase font-militar">FORÇA AÉREA BRASILEIRA</span>
-              <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-400/10 text-amber-300 border border-amber-400/25">GAP-CO</span>
+              <span class="text-[10px] sm:text-xs font-bold tracking-widest text-amber-400 uppercase font-militar truncate">FORÇA AÉREA BRASILEIRA</span>
+              <span class="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-400/10 text-amber-300 border border-amber-400/25">GAP-CO</span>
             </div>
-            <h1 class="text-base sm:text-xl font-extrabold tracking-tight text-white leading-tight font-militar">
+            <h1 class="text-[13px] sm:text-xl font-extrabold tracking-tight text-white leading-tight font-militar">
               GRUPAMENTO DE APOIO DE CANOAS
             </h1>
-            <p class="text-[11px] sm:text-xs text-slate-300">Sistema TACF · Avaliação do Condicionamento Físico (NSCA 54-3)</p>
+            <p class="text-[11px] sm:text-xs text-slate-300"><span class="sm:hidden">TACF 2025 · NSCA 54-3/2026</span><span class="hidden sm:inline">TACF 2025 · Avaliação do Condicionamento Físico (NSCA 54-3/2026)</span></p>
           </div>
         </div>
 
         <!-- Links de Ação Superior -->
-        <nav class="hidden lg:flex items-center space-x-2">
-          <a href="#simulador" class="px-3 py-2 text-xs font-bold text-slate-200 hover:text-amber-400 hover:bg-slate-800/60 rounded-lg transition-colors">Simulador TACF</a>
+        <nav class="hidden xl:flex items-center space-x-1 whitespace-nowrap">
+          <a href="#simulador" class="px-3 py-2 text-xs font-bold text-slate-200 hover:text-amber-400 hover:bg-slate-800/60 rounded-lg transition-colors">Simulador TACF 2025</a>
           <a href="#cronometro" class="px-3 py-2 text-xs font-bold text-slate-200 hover:text-amber-400 hover:bg-slate-800/60 rounded-lg transition-colors">Cronômetro 12 Min</a>
-          <a href="#tabela" class="px-3 py-2 text-xs font-bold text-slate-200 hover:text-amber-400 hover:bg-slate-800/60 rounded-lg transition-colors">Tabela de Índices</a>
+          <a href="#tabela" class="px-3 py-2 text-xs font-bold text-slate-200 hover:text-amber-400 hover:bg-slate-800/60 rounded-lg transition-colors">Metas Oficiais</a>
           <a href="#instrucoes" class="px-3 py-2 text-xs font-bold text-slate-200 hover:text-amber-400 hover:bg-slate-800/60 rounded-lg transition-colors">Instruções</a>
           <button onclick="window.print()" class="ml-2 inline-flex items-center px-3.5 py-2 text-xs font-black bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-lg shadow-lg hover:shadow-amber-500/20 transition-all font-militar uppercase tracking-wider">
             <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
@@ -136,8 +161,8 @@
         </nav>
 
         <!-- Botão Menu Mobile -->
-        <div class="flex lg:hidden">
-          <button id="mobile-menu-btn" class="p-2 rounded-lg text-amber-400 hover:bg-slate-800/80 focus:outline-none" aria-label="Abrir Menu">
+        <div class="flex xl:hidden flex-shrink-0">
+          <button id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" class="p-2.5 rounded-lg text-amber-400 hover:bg-slate-800/80 focus:outline-none" aria-label="Abrir Menu">
             <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -147,19 +172,19 @@
     </div>
 
     <!-- Dropdown Mobile -->
-    <div id="mobile-menu" class="hidden lg:hidden bg-[#061426] border-b border-amber-500/20 px-4 pt-2 pb-4 space-y-2 text-sm font-semibold">
-      <a href="#simulador" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-amber-400 hover:bg-slate-800">Simulador TACF</a>
+    <div id="mobile-menu" class="hidden xl:hidden bg-[#061426] border-b border-amber-500/20 px-4 pt-2 pb-4 space-y-2 text-sm font-semibold">
+      <a href="#simulador" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-amber-400 hover:bg-slate-800">Simulador TACF 2025</a>
       <a href="#cronometro" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-amber-400 hover:bg-slate-800">Cronômetro 12 Minutos</a>
-      <a href="#tabela" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-amber-400 hover:bg-slate-800">Tabela de Índices (NSCA 54-3)</a>
+      <a href="#tabela" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-amber-400 hover:bg-slate-800">Metas Oficiais (NSCA 54-3/2026)</a>
       <a href="#instrucoes" class="block px-3 py-2 rounded-lg text-slate-200 hover:text-amber-400 hover:bg-slate-800">Normas de Execução</a>
       <button onclick="window.print()" class="w-full mt-2 inline-flex justify-center items-center px-4 py-2.5 text-xs font-black bg-amber-500 text-slate-950 rounded-lg font-militar uppercase">
-        Imprimir Ficha Oficial do TACF
+        Imprimir Ficha do TACF 2025
       </button>
     </div>
   </header>
 
   <!-- ==================== HERO SECTION: DESTAQUE CENTRAL DA MISSÃO ==================== -->
-  <section class="no-print relative overflow-hidden bg-grid-tactical pt-12 pb-14 sm:pt-16 sm:pb-20 border-b border-amber-500/30">
+  <section class="no-print relative overflow-hidden bg-grid-tactical pt-8 pb-10 sm:pt-16 sm:pb-20 border-b border-amber-500/30">
     <div class="absolute inset-0 bg-gradient-to-b from-[#061426]/80 via-transparent to-[#07172b]"></div>
     
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
@@ -167,31 +192,31 @@
       <!-- Pílula de Honra da Unidade -->
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-400/30 mb-6 backdrop-blur-sm">
         <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping"></span>
-        <span class="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-amber-300 font-militar">
+        <span class="text-[10px] min-[380px]:text-xs sm:text-sm font-extrabold uppercase tracking-wider sm:tracking-widest text-amber-300 font-militar whitespace-nowrap">
           Grupamento de Apoio de Canoas
         </span>
       </div>
 
       <!-- LEMA CENTRAL: "NOSSA MISSÃO É APOIAR" BEM GRANDE NO CENTRO -->
       <div class="relative py-4 sm:py-6">
-        <h2 class="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase tracking-wider text-white font-militar gold-glow leading-none">
+        <h2 class="text-[2.6rem] min-[380px]:text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase tracking-wider text-white font-militar gold-glow leading-none">
           NOSSA MISSÃO <br class="hidden sm:inline" />
           <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 underline decoration-amber-500/50 decoration-4 sm:decoration-8 underline-offset-8">
             É APOIAR
           </span>
         </h2>
         <p class="mt-4 text-sm sm:text-base text-slate-300 font-semibold tracking-wide max-w-2xl mx-auto">
-          Portal Oficial de Avaliação do Condicionamento Físico (TACF)
+          Portal Oficial do TACF 2025 · Teste de Avaliação do Condicionamento Físico
         </p>
       </div>
 
       <!-- Botões de Ação Rápida -->
-      <div class="mt-8 flex flex-wrap justify-center gap-4">
-        <a href="#simulador" class="px-6 py-3.5 rounded-xl font-black text-slate-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 shadow-[0_0_20px_rgba(244,180,0,0.35)] transition-all transform hover:-translate-y-0.5 font-militar uppercase tracking-wider text-sm flex items-center gap-2">
+      <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row sm:flex-wrap justify-center items-stretch sm:items-center gap-3 sm:gap-4 max-w-sm sm:max-w-none mx-auto">
+        <a href="#simulador" class="px-6 py-3.5 rounded-xl font-black text-slate-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 shadow-[0_0_20px_rgba(244,180,0,0.35)] transition-all transform hover:-translate-y-0.5 font-militar uppercase tracking-wider text-sm flex items-center justify-center gap-2">
           <svg class="w-4 h-4 text-slate-950" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"/></svg>
-          Simular Pontuação do TACF
+          Simular Pontuação do TACF 2025
         </a>
-        <a href="#cronometro" class="px-6 py-3.5 rounded-xl font-bold text-white bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400/50 shadow-lg transition-all transform hover:-translate-y-0.5 font-militar uppercase tracking-wider text-sm flex items-center gap-2">
+        <a href="#cronometro" class="px-6 py-3.5 rounded-xl font-bold text-white bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400/50 shadow-lg transition-all transform hover:-translate-y-0.5 font-militar uppercase tracking-wider text-sm flex items-center justify-center gap-2">
           <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           Abrir Cronômetro 12 Min
         </a>
@@ -201,17 +226,17 @@
   </section>
 
   <!-- ==================== CONTEÚDO PRINCIPAL ==================== -->
-  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+  <main class="no-print flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 space-y-10 sm:space-y-12">
 
-    <!-- SEÇÃO 1: SIMULADOR DE ÍNDICES E CÁLCULO DO TACF -->
+    <!-- SEÇÃO 1: SIMULADOR DO TACF (NSCA 54-3/2026) -->
     <section id="simulador" class="space-y-6 scroll-mt-28">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-700/80 pb-4">
         <div>
-          <h2 class="text-2xl sm:text-3xl font-black text-white font-militar flex items-center gap-3">
-            <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-amber-500 text-slate-950 text-sm font-black shadow-md">1</span>
-            Simulador Oficial do TACF (NSCA 54-3)
+          <h2 class="text-xl sm:text-3xl font-black text-white font-militar flex items-center gap-3">
+            <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-xl bg-amber-500 text-slate-950 text-sm font-black shadow-md">1</span>
+            Simulador TACF 2025 (NSCA 54-3/2026)
           </h2>
-          <p class="text-sm text-slate-300 mt-1">Insira os parâmetros militares e resultados para apuração imediata da pontuação e parecer de aptidão.</p>
+          <p class="text-sm text-slate-300 mt-1">Cintura, flexão, abdominal e prova aeróbica: pontuação pelas tabelas do Anexo VI e parecer de aptidão imediato.</p>
         </div>
         <button id="btn-preencher-exemplo" class="text-xs font-semibold px-3.5 py-2 rounded-lg border border-slate-700 bg-slate-900/80 hover:bg-slate-800 text-amber-300 transition-colors flex items-center gap-1.5 self-start sm:self-auto">
           <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
@@ -220,19 +245,19 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        
-        <!-- COLUNA ESQUERDA: PARÂMETROS E PROVAS (7 colunas) -->
+
+        <!-- COLUNA ESQUERDA -->
         <div class="lg:col-span-7 space-y-6">
-          
+
           <!-- Identificação Militar -->
-          <div class="glass-panel rounded-2xl p-5 border border-slate-700/80">
+          <div class="glass-panel rounded-2xl p-4 sm:p-5 border border-slate-700/80">
             <h3 class="text-xs font-extrabold uppercase tracking-wider text-amber-400 font-militar mb-3 flex items-center gap-2">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
               Dados do Militar Avaliado (Para o Espelho Oficial)
             </h3>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <div>
-                <label class="block text-xs font-semibold text-slate-300 mb-1">Posto / Graduação</label>
+                <label for="militar-posto" class="block text-xs font-semibold text-slate-300 mb-1">Posto / Graduação</label>
                 <select id="militar-posto" class="w-full bg-slate-950/90 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-400 font-medium">
                   <option value="Soldado">Soldado (S1/S2)</option>
                   <option value="Cabo">Cabo (CB)</option>
@@ -250,212 +275,200 @@
                 </select>
               </div>
               <div class="sm:col-span-2">
-                <label class="block text-xs font-semibold text-slate-300 mb-1">Nome Completo / Nome de Guerra</label>
-                <input type="text" id="militar-nome" placeholder="Ex: 3S SILVA / Samuel Potter" class="w-full bg-slate-950/90 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-400 font-medium">
+                <label for="militar-nome" class="block text-xs font-semibold text-slate-300 mb-1">Nome Completo / Nome de Guerra</label>
+                <input type="text" id="militar-nome" placeholder="Ex: 3S SILVA" class="w-full bg-slate-950/90 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-400 font-medium">
               </div>
               <div class="sm:col-span-2">
-                <label class="block text-xs font-semibold text-slate-300 mb-1">Organização Militar Apoiada</label>
+                <label for="militar-om" class="block text-xs font-semibold text-slate-300 mb-1">Organização Militar Apoiada</label>
                 <input type="text" id="militar-om" value="GAP-CO" placeholder="GAP-CO, BACO, DTCEA-CO, etc." class="w-full bg-slate-950/90 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-400 font-medium">
               </div>
               <div>
-                <label class="block text-xs font-semibold text-slate-300 mb-1">SARAM / Matrícula</label>
-                <input type="text" id="militar-saram" placeholder="Ex: 7284910" class="w-full bg-slate-950/90 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-400 font-medium">
+                <label for="militar-saram" class="block text-xs font-semibold text-slate-300 mb-1">SARAM / Matrícula</label>
+                <input type="text" id="militar-saram" inputmode="numeric" placeholder="Ex: 7284910" class="w-full bg-slate-950/90 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-400 font-medium">
               </div>
             </div>
           </div>
 
-          <!-- Gênero e Faixa Etária -->
-          <div class="glass-panel rounded-2xl p-5 border border-slate-700/80 space-y-4">
+          <!-- Perfil: sexo, idade, estatura -->
+          <div class="glass-panel rounded-2xl p-4 sm:p-5 border border-slate-700/80 space-y-4">
             <h3 class="text-xs font-extrabold uppercase tracking-wider text-amber-400 font-militar flex items-center gap-2">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-              Enquadramento Regulamentar (NSCA 54-3)
+              Perfil do Avaliado (define a coluna das tabelas)
             </h3>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <!-- Sexo Biológico -->
-              <div>
-                <label class="block text-xs font-bold text-slate-300 mb-2">Gênero</label>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+              <div class="col-span-2 sm:col-span-1">
+                <span class="block text-xs font-bold text-slate-300 mb-2">Sexo</span>
                 <div class="grid grid-cols-2 gap-2">
-                  <button type="button" id="btn-sex-m" class="py-2.5 px-3 rounded-lg border text-sm font-bold transition-all flex items-center justify-center gap-2 bg-blue-600 text-white border-blue-400 shadow-lg">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-                    Masculino
-                  </button>
-                  <button type="button" id="btn-sex-f" class="py-2.5 px-3 rounded-lg border text-sm font-bold transition-all flex items-center justify-center gap-2 bg-slate-900 text-slate-300 border-slate-700 hover:bg-slate-800">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-                    Feminino
-                  </button>
+                  <button type="button" id="btn-sex-m" class="py-2.5 px-2 rounded-lg border text-sm font-bold transition-all bg-blue-600 text-white border-blue-400 shadow-lg">Masc.</button>
+                  <button type="button" id="btn-sex-f" class="py-2.5 px-2 rounded-lg border text-sm font-bold transition-all bg-slate-900 text-slate-300 border-slate-700 hover:bg-slate-800">Fem.</button>
                 </div>
               </div>
-
-              <!-- Faixa Etária -->
               <div>
-                <label class="block text-xs font-bold text-slate-300 mb-2">Faixa Etária Oficial</label>
-                <select id="select-faixa-etaria" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2.5 text-sm font-semibold text-white focus:outline-none focus:border-amber-400">
-                  <option value="under_25">&lt; 25 anos</option>
-                  <option value="25_29" selected>25 a 29 anos</option>
-                  <option value="30_34">30 a 34 anos</option>
-                  <option value="35_39">35 a 39 anos</option>
-                  <option value="40_44">40 a 44 anos</option>
-                  <option value="45_49">45 a 49 anos</option>
-                  <option value="50_plus">50 anos ou mais</option>
-                </select>
+                <label for="input-idade" class="block text-xs font-bold text-slate-300 mb-2">Idade (anos)</label>
+                <input type="number" id="input-idade" inputmode="numeric" min="18" max="75" step="1" value="29" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2.5 text-sm font-bold text-white font-mono focus:outline-none focus:border-amber-400">
+              </div>
+              <div>
+                <label for="input-estatura" class="block text-xs font-bold text-slate-300 mb-2">Estatura (cm)</label>
+                <input type="number" id="input-estatura" inputmode="numeric" min="140" max="220" step="1" value="175" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2.5 text-sm font-bold text-white font-mono focus:outline-none focus:border-amber-400">
               </div>
             </div>
+            <p id="perfil-erro" class="hidden text-xs font-semibold text-rose-300"></p>
+
+            <!-- Transição feminina (Art. 109) -->
+            <label id="box-transicao" class="hidden flex items-start gap-3 p-3 rounded-xl bg-pink-500/10 border border-pink-400/25 cursor-pointer">
+              <input type="checkbox" id="chk-transicao" class="mt-0.5 w-4 h-4 accent-pink-400">
+              <span class="text-xs text-slate-200 leading-relaxed">
+                <strong class="text-pink-300">Flexão com apoio dos joelhos</strong> — regra de transição do Art. 109 (Tabela 1 do OIC 06).
+                Desmarcado, vale a flexão padrão, sem apoio dos joelhos.
+              </span>
+            </label>
           </div>
 
-          <!-- As 3 Provas do TACF -->
-          <div class="glass-panel rounded-2xl p-5 border border-slate-700/80 space-y-5">
+          <!-- Provas (OIC) -->
+          <div class="glass-panel rounded-2xl p-4 sm:p-5 border border-slate-700/80 space-y-5">
             <h3 class="text-xs font-extrabold uppercase tracking-wider text-amber-400 font-militar flex items-center gap-2">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-              Resultados das Provas Regulamentares
+              Resultados dos Objetos de Investigação do Condicionamento (OIC)
             </h3>
 
-            <!-- 1. Flexão de Braço -->
-            <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2">
-              <div class="flex justify-between items-center">
+            <!-- Cintura -->
+            <div class="p-3.5 sm:p-4 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2">
+              <div class="flex justify-between items-center gap-2">
+                <span class="text-sm font-bold text-white flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-violet-400"></span>
+                  1. Circunferência da Cintura <span class="hidden sm:inline text-[11px] font-semibold text-slate-400">· até 30 pts</span>
+                </span>
+                <span class="text-xs font-mono font-bold text-violet-300 bg-violet-400/10 px-2 py-0.5 rounded border border-violet-400/30 whitespace-nowrap" id="meta-cintura-badge">S: ≤ — cm</span>
+              </div>
+              <p class="text-xs text-slate-400">Medida em centímetros. Quanto menor, maior a pontuação; a tabela usada depende da estatura.</p>
+              <div class="flex items-center space-x-3 pt-1">
+                <input type="range" id="range-cintura" min="60" max="120" step="0.5" value="86" class="w-full accent-violet-400 cursor-pointer" aria-label="Cintura em centímetros">
+                <div class="flex items-center space-x-1">
+                  <input type="number" id="input-cintura" inputmode="decimal" min="50" max="150" step="0.5" value="86" class="w-20 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5 text-center font-black text-violet-300 font-mono text-base focus:outline-none focus:border-violet-400">
+                  <span class="text-xs text-slate-400 font-semibold">cm</span>
+                </div>
+              </div>
+              <div id="previa-cintura" class="text-[11px] font-mono text-slate-400"></div>
+            </div>
+
+            <!-- Flexão -->
+            <div class="p-3.5 sm:p-4 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2">
+              <div class="flex justify-between items-center gap-2">
                 <span class="text-sm font-bold text-white flex items-center gap-2">
                   <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
-                  1. Flexão e Extensão dos Braços no Solo
+                  2. Flexão e Extensão dos Braços <span class="hidden sm:inline text-[11px] font-semibold text-slate-400">· até 10 pts</span>
                 </span>
-                <span class="text-xs font-mono font-bold text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/30" id="min-flexao-badge">Mín: 20 reps</span>
+                <span class="text-xs font-mono font-bold text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/30 whitespace-nowrap" id="meta-flexao-badge">S: ≥ — rep</span>
               </div>
-              <p class="text-xs text-slate-400">Apoio de frente no solo. Contagem por repetições válidas sem interrupção de descanso.</p>
+              <p class="text-xs text-slate-400">Repetições válidas, sem interrupção para descanso.</p>
               <div class="flex items-center space-x-3 pt-1">
-                <input type="range" id="range-flexao" min="0" max="80" value="32" class="w-full accent-amber-400 cursor-pointer">
+                <input type="range" id="range-flexao" min="0" max="70" value="32" class="w-full accent-amber-400 cursor-pointer" aria-label="Flexões">
                 <div class="flex items-center space-x-1">
-                  <input type="number" id="input-flexao" min="0" max="120" value="32" class="w-20 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5 text-center font-black text-amber-300 font-mono text-base focus:outline-none focus:border-amber-400">
+                  <input type="number" id="input-flexao" inputmode="numeric" min="0" max="150" value="32" class="w-20 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5 text-center font-black text-amber-300 font-mono text-base focus:outline-none focus:border-amber-400">
                   <span class="text-xs text-slate-400 font-semibold">reps</span>
                 </div>
               </div>
+              <div id="previa-flexao" class="text-[11px] font-mono text-slate-400"></div>
             </div>
 
-            <!-- 2. Abdominal -->
-            <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2">
-              <div class="flex justify-between items-center">
+            <!-- Abdominal -->
+            <div class="p-3.5 sm:p-4 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2">
+              <div class="flex justify-between items-center gap-2">
                 <span class="text-sm font-bold text-white flex items-center gap-2">
                   <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span>
-                  2. Flexão do Tronco sobre as Coxas (Abdominal - 1 Minuto)
+                  3. Abdominal (1 minuto) <span class="hidden sm:inline text-[11px] font-semibold text-slate-400">· até 10 pts</span>
                 </span>
-                <span class="text-xs font-mono font-bold text-blue-400 bg-blue-400/10 px-2 py-0.5 rounded border border-blue-400/30" id="min-abdominal-badge">Mín: 33 reps</span>
+                <span class="text-xs font-mono font-bold text-blue-400 bg-blue-400/10 px-2 py-0.5 rounded border border-blue-400/30 whitespace-nowrap" id="meta-abdominal-badge">S: ≥ — rep</span>
               </div>
-              <p class="text-xs text-slate-400">Tempo regulamentar de 1 (um) minuto cravado com fiscalização militar.</p>
+              <p class="text-xs text-slate-400">Repetições em 1 (um) minuto cronometrado pelo avaliador.</p>
               <div class="flex items-center space-x-3 pt-1">
-                <input type="range" id="range-abdominal" min="0" max="90" value="44" class="w-full accent-blue-400 cursor-pointer">
+                <input type="range" id="range-abdominal" min="0" max="80" value="44" class="w-full accent-blue-400 cursor-pointer" aria-label="Abdominais">
                 <div class="flex items-center space-x-1">
-                  <input type="number" id="input-abdominal" min="0" max="120" value="44" class="w-20 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5 text-center font-black text-blue-300 font-mono text-base focus:outline-none focus:border-blue-400">
+                  <input type="number" id="input-abdominal" inputmode="numeric" min="0" max="150" value="44" class="w-20 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5 text-center font-black text-blue-300 font-mono text-base focus:outline-none focus:border-blue-400">
                   <span class="text-xs text-slate-400 font-semibold">reps</span>
                 </div>
               </div>
+              <div id="previa-abdominal" class="text-[11px] font-mono text-slate-400"></div>
             </div>
 
-            <!-- 3. Corrida de 12 Minutos -->
-            <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2">
-              <div class="flex justify-between items-center">
+            <!-- Aeróbico -->
+            <div class="p-3.5 sm:p-4 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2">
+              <div class="flex justify-between items-center gap-2 flex-wrap">
                 <span class="text-sm font-bold text-white flex items-center gap-2">
                   <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-                  3. Corrida de 12 Minutos (Pista)
+                  4. Prova Aeróbica <span class="hidden sm:inline text-[11px] font-semibold text-slate-400">· até 50 pts</span>
                 </span>
-                <span class="text-xs font-mono font-bold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded border border-emerald-400/30" id="min-corrida-badge">Mín: 2.000 m</span>
+                <span class="text-xs font-mono font-bold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded border border-emerald-400/30 whitespace-nowrap" id="meta-aerobico-badge">S: ≥ — m</span>
               </div>
-              <p class="text-xs text-slate-400">Distância percorrida em metros na pista oficial de atletismo.</p>
-              <div class="flex items-center space-x-3 pt-1">
-                <input type="range" id="range-corrida" min="1000" max="3800" step="10" value="2450" class="w-full accent-emerald-400 cursor-pointer">
-                <div class="flex items-center space-x-1">
-                  <input type="number" id="input-corrida" min="500" max="4500" step="10" value="2450" class="w-24 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5 text-center font-black text-emerald-300 font-mono text-base focus:outline-none focus:border-emerald-400">
-                  <span class="text-xs text-slate-400 font-semibold">metros</span>
+              <div class="grid grid-cols-2 sm:inline-flex rounded-lg border border-slate-700 bg-slate-900 p-1 mt-1 w-full sm:w-auto">
+                <button type="button" id="btn-aer-corrida" class="px-3 py-1.5 rounded-md text-xs font-black bg-emerald-500 text-slate-950 font-militar uppercase">Corrida 12 min</button>
+                <button type="button" id="btn-aer-marcha" class="px-3 py-1.5 rounded-md text-xs font-black text-slate-400 hover:text-white font-militar uppercase">Marcha 4,8 km</button>
+              </div>
+
+              <div id="box-corrida" class="space-y-2">
+                <div class="flex items-center space-x-3 pt-1">
+                  <input type="range" id="range-corrida" min="1000" max="3800" step="10" value="2450" class="w-full accent-emerald-400 cursor-pointer" aria-label="Distância da corrida">
+                  <div class="flex items-center space-x-1">
+                    <input type="number" id="input-corrida" inputmode="numeric" min="1" max="5000" step="10" value="2450" class="w-24 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5 text-center font-black text-emerald-300 font-mono text-base focus:outline-none focus:border-emerald-400">
+                    <span class="text-xs text-slate-400 font-semibold">metros</span>
+                  </div>
+                </div>
+                <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-xs text-slate-400">
+                  <span id="corrida-voltas-hint" class="font-mono text-amber-300">≈ 6,1 voltas de 400 m</span>
+                  <a href="#cronometro" class="text-emerald-400 hover:text-emerald-300 underline font-semibold">Usar cronômetro integrado &rarr;</a>
                 </div>
               </div>
-              <div class="flex items-center justify-between text-xs text-slate-400 pt-1">
-                <span id="corrida-voltas-hint" class="font-mono text-amber-300">Equivale a: ~6.1 voltas de 400m</span>
-                <a href="#cronometro" class="text-emerald-400 hover:text-emerald-300 underline font-semibold flex items-center gap-1">
-                  Usar cronômetro integrado &rarr;
-                </a>
+
+              <div id="box-marcha" class="hidden pt-1">
+                <div class="flex items-center gap-2">
+                  <input type="number" id="input-marcha-min" inputmode="numeric" min="10" max="120" value="38" class="w-20 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5 text-center font-black text-emerald-300 font-mono text-base focus:outline-none focus:border-emerald-400" aria-label="Minutos da marcha">
+                  <span class="text-slate-400 font-black">:</span>
+                  <input type="number" id="input-marcha-seg" inputmode="numeric" min="0" max="59" value="0" class="w-20 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5 text-center font-black text-emerald-300 font-mono text-base focus:outline-none focus:border-emerald-400" aria-label="Segundos da marcha">
+                  <span class="text-xs text-slate-400 font-semibold">min : seg</span>
+                </div>
+                <p class="text-xs text-slate-400 mt-2">Tempo para completar 4,8 km. Quanto menor, maior a pontuação.</p>
               </div>
+              <div id="previa-aerobico" class="text-[11px] font-mono text-slate-400"></div>
             </div>
 
-            <!-- Botão de Recálculo Forçado -->
             <button id="btn-calcular" class="w-full py-3.5 px-6 rounded-xl font-black text-slate-950 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 hover:brightness-110 shadow-lg font-militar uppercase tracking-wider text-sm flex items-center justify-center gap-2 transition-all">
               <svg class="w-5 h-5 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-              Atualizar Avaliação do TACF
+              Ver Parecer do TACF
             </button>
           </div>
-
         </div>
 
-        <!-- COLUNA DIREITA: PAINEL DE RESULTADO E PARECER (5 colunas) -->
+        <!-- COLUNA DIREITA: RESULTADO -->
         <div class="lg:col-span-5 space-y-6">
-          <div id="card-resultado" class="glass-hero rounded-2xl p-6 sm:p-7 shadow-2xl border border-amber-500/40 sticky top-28 space-y-6">
-            
+          <div id="card-resultado" class="glass-hero rounded-2xl p-4 sm:p-7 shadow-2xl border border-amber-500/40 lg:sticky lg:top-28 space-y-5 scroll-mt-24">
+
             <div class="flex items-center justify-between border-b border-slate-700/80 pb-3">
               <div>
                 <span class="text-[11px] font-extrabold tracking-wider text-amber-400 uppercase font-militar">PARECER DA COMISSÃO AVALIADORA</span>
-                <div class="text-xs text-slate-300">GAP-CO</div>
+                <div class="text-xs text-slate-300">GAP-CO · NSCA 54-3/2026</div>
               </div>
-              <span id="badge-status" class="px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-militar">
-                APTO
-              </span>
+              <span id="badge-status" class="px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-militar">APTO</span>
             </div>
 
-            <!-- Grau Acumulado e Menção Oficial -->
             <div class="text-center py-4 bg-slate-950/60 rounded-xl border border-slate-800">
-              <div class="text-xs font-bold text-slate-400 uppercase tracking-widest font-militar">Grau Final Acumulado</div>
+              <div class="text-xs font-bold text-slate-400 uppercase tracking-widest font-militar">Grau Final</div>
               <div class="flex items-center justify-center gap-2 my-1">
-                <span id="resultado-grau" class="text-5xl sm:text-6xl font-black font-mono text-white tracking-tight">85.4</span>
+                <span id="resultado-grau" class="text-5xl sm:text-6xl font-black font-mono text-white tracking-tight">0,0</span>
                 <span class="text-slate-400 text-lg font-bold font-mono">/ 100</span>
               </div>
-              <div id="resultado-mencao" class="inline-block mt-2 px-4 py-1 rounded-lg text-sm font-extrabold bg-blue-500/20 text-blue-300 border border-blue-400/30 font-militar">
-                Conceito: Muito Bom (MB)
-              </div>
+              <div id="resultado-mencao" class="inline-block mt-2 px-4 py-1 rounded-lg text-sm font-extrabold border font-militar">Menção: —</div>
+              <div id="resultado-proxima" class="text-[11px] text-slate-400 mt-2"></div>
             </div>
 
-            <!-- Desempenho Discriminado -->
-            <div class="space-y-3">
-              <div class="text-xs font-extrabold text-slate-300 uppercase tracking-wider font-militar">Desempenho por Exercício</div>
-              
-              <!-- Flexão Card -->
-              <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800/80 flex items-center justify-between">
-                <div>
-                  <div class="text-xs font-bold text-slate-200">Flexão de Braço</div>
-                  <div id="detalhe-flexao-reps" class="text-[11px] text-slate-400 font-mono">32 reps</div>
-                </div>
-                <div class="text-right">
-                  <div id="detalhe-flexao-pontos" class="text-xs font-black text-amber-400 font-mono">27.5 pts</div>
-                  <div id="detalhe-flexao-conceito" class="text-[10px] font-bold text-emerald-400">Muito Bom</div>
-                </div>
-              </div>
-
-              <!-- Abdominal Card -->
-              <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800/80 flex items-center justify-between">
-                <div>
-                  <div class="text-xs font-bold text-slate-200">Abdominal (1 min)</div>
-                  <div id="detalhe-abdominal-reps" class="text-[11px] text-slate-400 font-mono">44 reps</div>
-                </div>
-                <div class="text-right">
-                  <div id="detalhe-abdominal-pontos" class="text-xs font-black text-blue-400 font-mono">26.0 pts</div>
-                  <div id="detalhe-abdominal-conceito" class="text-[10px] font-bold text-emerald-400">Muito Bom</div>
-                </div>
-              </div>
-
-              <!-- Corrida Card -->
-              <div class="bg-slate-950/70 p-3 rounded-xl border border-slate-800/80 flex items-center justify-between">
-                <div>
-                  <div class="text-xs font-bold text-slate-200">Corrida 12 Minutos</div>
-                  <div id="detalhe-corrida-metros" class="text-[11px] text-slate-400 font-mono">2.450 m (~6.1 voltas)</div>
-                </div>
-                <div class="text-right">
-                  <div id="detalhe-corrida-pontos" class="text-xs font-black text-emerald-400 font-mono">31.9 pts</div>
-                  <div id="detalhe-corrida-conceito" class="text-[10px] font-bold text-emerald-400">Bom</div>
-                </div>
-              </div>
+            <div class="space-y-2.5">
+              <div class="text-xs font-extrabold text-slate-300 uppercase tracking-wider font-militar">Pontuação por OIC</div>
+              <div id="lista-itens" class="space-y-2.5"></div>
             </div>
 
-            <!-- Parecer Narrativo -->
-            <div id="parecer-narrativo" class="p-3.5 rounded-xl bg-amber-400/10 border border-amber-400/20 text-xs text-amber-200 leading-relaxed">
-              Excelente padrão de condicionamento. O militar atendeu a todos os índices eliminatórios previstos na NSCA 54-3.
-            </div>
+            <div id="parecer-narrativo" class="p-3.5 rounded-xl text-xs leading-relaxed"></div>
 
-            <!-- Ações -->
-            <div class="pt-2 grid grid-cols-2 gap-2">
+            <div class="pt-1 grid grid-cols-2 gap-2">
               <button onclick="window.print()" class="py-2.5 px-3 text-xs font-black rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 flex items-center justify-center gap-1.5 transition-all font-militar uppercase">
                 <svg class="w-4 h-4 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
                 Imprimir Espelho
@@ -473,11 +486,11 @@
     </section>
 
     <!-- SEÇÃO 2: CRONÔMETRO DE PISTA (12 MINUTOS) -->
-    <section id="cronometro" class="glass-panel rounded-2xl p-6 sm:p-8 border border-slate-700/80 space-y-6 scroll-mt-28">
+    <section id="cronometro" class="glass-panel rounded-2xl p-4 sm:p-8 border border-slate-700/80 space-y-6 scroll-mt-28">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-700/80 pb-4">
         <div>
-          <h2 class="text-2xl sm:text-3xl font-black text-white font-militar flex items-center gap-3">
-            <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500 text-slate-950 text-sm font-black shadow-md">2</span>
+          <h2 class="text-xl sm:text-3xl font-black text-white font-militar flex items-center gap-3">
+            <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500 text-slate-950 text-sm font-black shadow-md">2</span>
             Cronômetro de Pista · Teste de Cooper (12 Minutos)
           </h2>
           <p class="text-sm text-slate-300 mt-1">Instrumento para treino e avaliação na pista oficial de atletismo (400m).</p>
@@ -492,10 +505,10 @@
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         <!-- Mostrador Principal -->
-        <div class="lg:col-span-7 flex flex-col items-center justify-center bg-slate-950/90 p-8 rounded-2xl border border-slate-800 shadow-inner">
+        <div class="lg:col-span-7 flex flex-col items-center justify-center bg-slate-950/90 p-5 sm:p-8 rounded-2xl border border-slate-800 shadow-inner">
           <div class="text-xs font-black uppercase tracking-widest text-slate-400 font-militar mb-1">Tempo Oficial Decorrido</div>
           
-          <div id="cronometro-display" class="font-mono text-6xl sm:text-8xl font-black text-amber-400 tracking-tight my-2 drop-shadow-[0_0_20px_rgba(244,180,0,0.3)]">
+          <div id="cronometro-display" class="font-mono text-[3.4rem] min-[380px]:text-6xl sm:text-8xl font-black text-amber-400 tracking-tight my-2 drop-shadow-[0_0_20px_rgba(244,180,0,0.3)]">
             00:00.0
           </div>
 
@@ -503,27 +516,27 @@
           <div class="w-full max-w-md bg-slate-900 h-3 rounded-full overflow-hidden mt-3 p-0.5 border border-slate-800">
             <div id="cronometro-progresso" class="bg-gradient-to-r from-amber-400 via-blue-400 to-emerald-400 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
           </div>
-          <div class="w-full max-w-md flex justify-between text-[11px] font-mono text-slate-400 mt-1.5">
+          <div class="w-full max-w-md flex justify-between text-[10px] sm:text-[11px] font-mono text-slate-400 mt-1.5">
             <span>0m</span>
-            <span>6m (Metade)</span>
-            <span>10m (Aviso)</span>
-            <span>12m (Fim)</span>
+            <span>6m<span class="hidden sm:inline"> (Metade)</span></span>
+            <span>10m<span class="hidden sm:inline"> (Aviso)</span></span>
+            <span>12m<span class="hidden sm:inline"> (Fim)</span></span>
           </div>
 
           <!-- Controles de Comando -->
-          <div class="flex flex-wrap items-center justify-center gap-3 mt-7">
-            <button id="btn-cron-start" class="px-6 py-3 rounded-xl font-black text-slate-950 bg-emerald-400 hover:bg-emerald-300 shadow-lg shadow-emerald-500/20 flex items-center gap-2 transition-all font-militar uppercase tracking-wider text-sm">
+          <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-stretch sm:items-center justify-center gap-3 mt-7 w-full sm:w-auto">
+            <button id="btn-cron-start" class="justify-center px-6 py-3 rounded-xl font-black text-slate-950 bg-emerald-400 hover:bg-emerald-300 shadow-lg shadow-emerald-500/20 flex items-center gap-2 transition-all font-militar uppercase tracking-wider text-sm">
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
               Iniciar
             </button>
-            <button id="btn-cron-pause" disabled class="px-6 py-3 rounded-xl font-bold text-white bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed border border-slate-700 flex items-center gap-2 transition-all font-militar uppercase tracking-wider text-sm">
+            <button id="btn-cron-pause" disabled class="justify-center px-6 py-3 rounded-xl font-bold text-white bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed border border-slate-700 flex items-center gap-2 transition-all font-militar uppercase tracking-wider text-sm">
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
               Pausar
             </button>
-            <button id="btn-cron-reset" class="px-5 py-3 rounded-xl font-bold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 hover:bg-slate-800 transition-all font-militar uppercase tracking-wider text-sm">
+            <button id="btn-cron-reset" class="justify-center px-5 py-3 rounded-xl font-bold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 hover:bg-slate-800 transition-all font-militar uppercase tracking-wider text-sm">
               Reiniciar
             </button>
-            <button id="btn-cron-volta" disabled class="px-6 py-3 rounded-xl font-black text-amber-300 bg-amber-950/70 hover:bg-amber-900/80 disabled:opacity-40 border border-amber-600/50 flex items-center gap-2 transition-all font-militar uppercase tracking-wider text-sm">
+            <button id="btn-cron-volta" disabled class="justify-center px-6 py-3 rounded-xl font-black text-amber-300 bg-amber-950/70 hover:bg-amber-900/80 disabled:opacity-40 border border-amber-600/50 flex items-center gap-2 transition-all font-militar uppercase tracking-wider text-sm">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               +1 Volta (400m)
             </button>
@@ -535,17 +548,17 @@
           <div class="bg-slate-950/80 p-5 rounded-2xl border border-slate-800 space-y-4">
             <div class="flex items-center justify-between border-b border-slate-800 pb-3">
               <span class="text-xs font-bold text-slate-300 uppercase tracking-wider font-militar">Registrador de Voltas</span>
-              <span id="pista-voltas-count" class="text-amber-400 font-mono font-black text-lg">0 Voltas</span>
+              <span id="pista-voltas-count" class="text-amber-400 font-mono font-black text-lg whitespace-nowrap">0 Voltas</span>
             </div>
 
             <div class="grid grid-cols-2 gap-3">
               <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800">
                 <div class="text-[11px] text-slate-400 font-semibold">Distância Percorrida</div>
-                <div id="pista-distancia" class="text-2xl font-black text-white font-mono mt-0.5">0 m</div>
+                <div id="pista-distancia" class="text-xl sm:text-2xl whitespace-nowrap font-black text-white font-mono mt-0.5">0 m</div>
               </div>
               <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800">
                 <div class="text-[11px] text-slate-400 font-semibold">Ritmo Médio (Pace)</div>
-                <div id="pista-pace" class="text-2xl font-black text-blue-400 font-mono mt-0.5">--:-- /km</div>
+                <div id="pista-pace" class="text-xl sm:text-2xl whitespace-nowrap font-black text-blue-400 font-mono mt-0.5">--:-- /km</div>
               </div>
               <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800 col-span-2">
                 <div class="text-[11px] text-slate-400 font-semibold">Projeção Estimada em 12 Minutos</div>
@@ -570,49 +583,38 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 3: TABELA DE ÍNDICES OFICIAIS (NSCA 54-3) -->
+    <!-- SEÇÃO 3: METAS OFICIAIS DO PERFIL (NSCA 54-3/2026, ANEXO VI) -->
     <section id="tabela" class="space-y-4 scroll-mt-28">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-700/80 pb-3">
-        <div>
-          <h2 class="text-2xl sm:text-3xl font-black text-white font-militar flex items-center gap-3">
-            <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-blue-500 text-slate-950 text-sm font-black shadow-md">3</span>
-            Tabela de Índices de Referência Oficial (NSCA 54-3)
-          </h2>
-          <p class="text-sm text-slate-300 mt-1">Parâmetros normativos de condicionamento físico da Força Aérea Brasileira.</p>
-        </div>
-        
-        <!-- Alternador Masculino / Feminino -->
-        <div class="inline-flex rounded-xl border border-slate-700 bg-slate-950 p-1">
-          <button id="tab-btn-masc" class="px-4 py-2 rounded-lg text-xs font-black transition-all bg-amber-500 text-slate-950 font-militar uppercase">
-            Tabela Masculina
-          </button>
-          <button id="tab-btn-fem" class="px-4 py-2 rounded-lg text-xs font-black transition-all text-slate-400 hover:text-white font-militar uppercase">
-            Tabela Feminina
-          </button>
-        </div>
+      <div class="border-b border-slate-700/80 pb-3">
+        <h2 class="text-xl sm:text-3xl font-black text-white font-militar flex items-center gap-3">
+          <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-xl bg-blue-500 text-slate-950 text-sm font-black shadow-md">3</span>
+          Metas Oficiais do Perfil (NSCA 54-3/2026)
+        </h2>
+        <p class="text-sm text-slate-300 mt-1">Índice necessário em cada OIC para cada menção, calculado pelas tabelas do Anexo VI para o perfil informado no simulador.</p>
+        <p id="metas-perfil" class="text-xs font-mono text-amber-300 mt-2"></p>
       </div>
 
+      <div id="metas-cards" class="md:hidden space-y-3"></div>
       <div class="glass-panel rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl">
-        <div class="overflow-x-auto">
+        <div class="hidden md:block overflow-x-auto">
           <table class="w-full text-left text-sm text-slate-300">
             <thead class="bg-[#061426] text-xs uppercase tracking-wider text-amber-400 font-black border-b border-slate-700 font-militar">
               <tr>
-                <th scope="col" class="px-4 py-3.5">Faixa Etária</th>
-                <th scope="col" class="px-4 py-3.5 text-center">Mínimo Eliminatório</th>
-                <th scope="col" class="px-4 py-3.5 text-center">Regular (S)</th>
+                <th scope="col" class="px-4 py-3.5">OIC</th>
+                <th scope="col" class="px-4 py-3.5 text-center">Satisfatório (S)</th>
                 <th scope="col" class="px-4 py-3.5 text-center">Bom (B)</th>
                 <th scope="col" class="px-4 py-3.5 text-center">Muito Bom (MB)</th>
                 <th scope="col" class="px-4 py-3.5 text-center">Excelente (E)</th>
+                <th scope="col" class="px-4 py-3.5 text-center">Máximo</th>
               </tr>
             </thead>
-            <tbody id="tabela-corpo-indices" class="divide-y divide-slate-800">
-              <!-- Renderizado via JS -->
-            </tbody>
+            <tbody id="metas-corpo" class="divide-y divide-slate-800"></tbody>
           </table>
         </div>
-        <div class="bg-slate-950 px-5 py-3 text-xs text-slate-400 border-t border-slate-800 flex flex-col sm:flex-row justify-between gap-1">
-          <span>Fonte: Norma de Sistema do Comando da Aeronáutica (NSCA 54-3).</span>
-          <span class="text-amber-400 font-semibold">O não atingimento do índice mínimo em qualquer prova resulta em Parecer INAPTO.</span>
+        <div class="bg-slate-950 px-5 py-3 text-xs text-slate-400 border-t border-slate-800 space-y-1">
+          <div>Pontos por faixa: cintura 6 / 12 / 21 / 27 / 30 · flexão e abdominal 2 / 4 / 7 / 9 / 10 · aeróbico 10 / 20 / 35 / 45 / 50.</div>
+          <div>Menção pelo Grau Final: S ≥ 20 · B ≥ 40 · MB ≥ 70 · E ≥ 90.</div>
+          <div class="text-amber-400 font-semibold">NÃO APTO se o Grau Final for menor que 20 ou se qualquer OIC ficar com zero ponto (Art. 30, 33 e 36).</div>
         </div>
       </div>
     </section>
@@ -620,15 +622,29 @@
     <!-- SEÇÃO 4: INSTRUÇÕES TÉCNICAS E CRITÉRIOS -->
     <section id="instrucoes" class="space-y-4 scroll-mt-28">
       <div>
-        <h2 class="text-2xl sm:text-3xl font-black text-white font-militar flex items-center gap-3">
-          <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-amber-500 text-slate-950 text-sm font-black shadow-md">4</span>
+        <h2 class="text-xl sm:text-3xl font-black text-white font-militar flex items-center gap-3">
+          <span class="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-xl bg-amber-500 text-slate-950 text-sm font-black shadow-md">4</span>
           Normas Técnicas de Execução das Provas
         </h2>
         <p class="text-sm text-slate-300 mt-1">Posturas exigidas e critérios observados pelos fiscais da comissão avaliadora do GAP-CO.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Cintura Card -->
+        <div class="glass-panel rounded-2xl p-6 border border-slate-700/80 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 rounded-md bg-violet-500/15 text-violet-300 font-black text-xs font-militar uppercase">OIC 01/05</span>
+            <span class="text-xs text-slate-400 font-semibold">Composição Corporal</span>
+          </div>
+          <h3 class="text-lg font-bold text-white font-militar">Circunferência da Cintura</h3>
+          <ul class="text-xs text-slate-300 space-y-2 list-disc pl-4 leading-relaxed">
+            <li><strong class="text-white">Medida:</strong> registrada em centímetros, com fita métrica, pela comissão avaliadora.</li>
+            <li><strong class="text-white">Pontuação:</strong> até 30 pontos; quanto menor a cintura, maior a nota.</li>
+            <li><strong class="text-amber-400">Estatura:</strong> a tabela aplicada depende da altura e do sexo do avaliado.</li>
+          </ul>
+        </div>
+
         <!-- Flexão Card -->
         <div class="glass-panel rounded-2xl p-6 border border-slate-700/80 space-y-3">
           <div class="flex items-center justify-between">
@@ -693,8 +709,8 @@
         </div>
       </div>
       <div class="text-right">
-        <div class="text-base font-black uppercase">FICHA INDIVIDUAL DO TACF</div>
-        <div class="text-xs font-semibold">NORMA REGULADORA NSCA 54-3</div>
+        <div class="text-base font-black uppercase">FICHA INDIVIDUAL DO TACF 2025</div>
+        <div class="text-xs font-semibold">NORMA REGULADORA NSCA 54-3/2026</div>
         <div class="text-xs" id="print-data">Data: --/--/----</div>
       </div>
     </div>
@@ -718,10 +734,10 @@
         <td class="p-2 border border-black" id="print-militar-om">GAP-CO</td>
       </tr>
       <tr>
-        <td class="p-2 border border-black font-bold bg-gray-100">Gênero Biológico:</td>
+        <td class="p-2 border border-black font-bold bg-gray-100">Sexo:</td>
         <td class="p-2 border border-black" id="print-militar-genero">-</td>
-        <td class="p-2 border border-black font-bold bg-gray-100">Faixa Etária:</td>
-        <td class="p-2 border border-black" id="print-militar-faixa">-</td>
+        <td class="p-2 border border-black font-bold bg-gray-100">Idade / Estatura:</td>
+        <td class="p-2 border border-black" id="print-militar-perfil">-</td>
       </tr>
     </table>
 
@@ -729,43 +745,21 @@
     <table class="w-full text-xs border border-black mb-4 text-center">
       <thead class="bg-gray-200 font-bold">
         <tr>
-          <th class="p-2 border border-black text-left">Prova Avaliada</th>
+          <th class="p-2 border border-black text-left">OIC Avaliado</th>
           <th class="p-2 border border-black">Índice Atingido</th>
           <th class="p-2 border border-black">Pontuação</th>
-          <th class="p-2 border border-black">Menção Parcial</th>
+          <th class="p-2 border border-black">Faixa</th>
           <th class="p-2 border border-black">Situação</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td class="p-2 border border-black text-left font-semibold">1. Flexão de Braços no Solo</td>
-          <td class="p-2 border border-black" id="print-flexao-marca">-</td>
-          <td class="p-2 border border-black" id="print-flexao-pts">-</td>
-          <td class="p-2 border border-black" id="print-flexao-conc">-</td>
-          <td class="p-2 border border-black font-bold" id="print-flexao-parecer">-</td>
-        </tr>
-        <tr>
-          <td class="p-2 border border-black text-left font-semibold">2. Abdominal (1 Minuto)</td>
-          <td class="p-2 border border-black" id="print-abdominal-marca">-</td>
-          <td class="p-2 border border-black" id="print-abdominal-pts">-</td>
-          <td class="p-2 border border-black" id="print-abdominal-conc">-</td>
-          <td class="p-2 border border-black font-bold" id="print-abdominal-parecer">-</td>
-        </tr>
-        <tr>
-          <td class="p-2 border border-black text-left font-semibold">3. Corrida de 12 Minutos</td>
-          <td class="p-2 border border-black" id="print-corrida-marca">-</td>
-          <td class="p-2 border border-black" id="print-corrida-pts">-</td>
-          <td class="p-2 border border-black" id="print-corrida-conc">-</td>
-          <td class="p-2 border border-black font-bold" id="print-corrida-parecer">-</td>
-        </tr>
-      </tbody>
+      <tbody id="print-itens"></tbody>
     </table>
 
     <!-- Grau Final -->
     <div class="border-2 border-black p-4 mb-10 flex justify-between items-center">
       <div>
-        <div class="text-xs uppercase font-bold">Grau Final Acumulado: <span id="print-grau-final" class="text-lg font-black font-mono">--</span> / 100</div>
-        <div class="text-xs">Menção Global: <strong id="print-mencao-global">--</strong></div>
+        <div class="text-xs uppercase font-bold">Grau Final: <span id="print-grau-final" class="text-lg font-black font-mono">--</span> / 100</div>
+        <div class="text-xs">Menção: <strong id="print-mencao-global">--</strong></div>
       </div>
       <div class="text-right">
         <div class="text-xs uppercase font-bold">Parecer Final da Comissão:</div>
@@ -784,8 +778,26 @@
     </div>
   </section>
 
+  <!-- ==================== BARRA DE RESULTADO (CELULAR / TABLET) ==================== -->
+  <div id="barra-mobile" class="no-print lg:hidden fixed inset-x-0 bottom-0 z-40 bg-[#061426]/95 backdrop-blur-md border-t border-amber-500/30 px-4 pt-2.5 safe-bottom">
+    <button type="button" id="barra-mobile-btn" class="w-full max-w-3xl mx-auto flex items-center justify-between gap-3 text-left">
+      <div class="min-w-0">
+        <div class="text-[10px] font-extrabold uppercase tracking-wider text-amber-400 font-militar">Grau Final TACF 2025</div>
+        <div class="flex items-baseline gap-2">
+          <span id="barra-grau" class="text-2xl font-black font-mono text-white">0,0</span>
+          <span class="text-xs text-slate-400 font-mono">/ 100</span>
+          <span id="barra-mencao" class="text-xs font-bold text-slate-300 truncate"></span>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <span id="barra-status" class="px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider font-militar border">APTO</span>
+        <span class="text-xs font-bold text-amber-300 underline">Ver</span>
+      </div>
+    </button>
+  </div>
+
   <!-- ==================== RODAPÉ OFICIAL ==================== -->
-  <footer class="no-print bg-[#051120] border-t border-slate-800 py-8 text-slate-400 text-xs">
+  <footer class="no-print bg-[#051120] border-t border-slate-800 py-8 lg:pb-8 text-slate-400 text-xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
       <div class="flex items-center space-x-3">
         <div class="w-8 h-8 rounded-lg bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 font-black text-xs font-militar">
@@ -797,8 +809,7 @@
         </div>
       </div>
       <div class="text-center md:text-right">
-        <div>Repositório GitHub: <code class="text-amber-400 bg-slate-900 px-2 py-0.5 rounded font-mono">Samuelpotter96/tacf-gapco</code></div>
-        <div class="text-[11px] text-slate-500 mt-1">Aplicação Técnica do TACF · Norma Reguladora NSCA 54-3</div>
+        <div>Desenvolvido por <span class="font-bold text-amber-400 font-militar">3S Potter</span></div>
       </div>
     </div>
   </footer>
@@ -806,346 +817,733 @@
   <!-- ==================== LÓGICA E DADOS (JAVASCRIPT) ==================== -->
   <script>
     /* =====================================================================
-       TABELAS OFICIAIS DE REFERÊNCIA - NSCA 54-3 (FAB)
+       TABELAS E CÁLCULO OFICIAIS — NSCA 54-3/2026 (Anexo VI)
+       Fonte das tabelas: github.com/camposfmc/TACF
        ===================================================================== */
-    const TABELA_TACF = {
-      masculino: {
-        under_25: {
-          flexao:    { min: 22, regular: 25, bom: 34, muitoBom: 45, excelente: 55 },
-          abdominal: { min: 35, regular: 37, bom: 45, muitoBom: 55, excelente: 62 },
-          corrida:   { min: 2050, regular: 2130, bom: 2410, muitoBom: 2700, excelente: 2960 }
-        },
-        '25_29': {
-          flexao:    { min: 20, regular: 22, bom: 31, muitoBom: 42, excelente: 53 },
-          abdominal: { min: 33, regular: 35, bom: 43, muitoBom: 53, excelente: 60 },
-          corrida:   { min: 2000, regular: 2080, bom: 2350, muitoBom: 2650, excelente: 2910 }
-        },
-        '30_34': {
-          flexao:    { min: 18, regular: 20, bom: 29, muitoBom: 39, excelente: 46 },
-          abdominal: { min: 30, regular: 32, bom: 40, muitoBom: 50, excelente: 57 },
-          corrida:   { min: 1950, regular: 2020, bom: 2250, muitoBom: 2560, excelente: 2830 }
-        },
-        '35_39': {
-          flexao:    { min: 15, regular: 17, bom: 25, muitoBom: 37, excelente: 43 },
-          abdominal: { min: 27, regular: 29, bom: 36, muitoBom: 46, excelente: 53 },
-          corrida:   { min: 1900, regular: 1960, bom: 2150, muitoBom: 2460, excelente: 2730 }
-        },
-        '40_44': {
-          flexao:    { min: 13, regular: 14, bom: 20, muitoBom: 29, excelente: 38 },
-          abdominal: { min: 23, regular: 25, bom: 31, muitoBom: 40, excelente: 49 },
-          corrida:   { min: 1850, regular: 1910, bom: 2050, muitoBom: 2350, excelente: 2650 }
-        },
-        '45_49': {
-          flexao:    { min: 11, regular: 13, bom: 19, muitoBom: 25, excelente: 36 },
-          abdominal: { min: 20, regular: 22, bom: 28, muitoBom: 36, excelente: 46 },
-          corrida:   { min: 1800, regular: 1850, bom: 1950, muitoBom: 2260, excelente: 2560 }
-        },
-        '50_plus': {
-          flexao:    { min: 9,  regular: 11, bom: 17, muitoBom: 22, excelente: 29 },
-          abdominal: { min: 17, regular: 19, bom: 25, muitoBom: 33, excelente: 39 },
-          corrida:   { min: 1750, regular: 1800, bom: 1880, muitoBom: 2160, excelente: 2410 }
-        }
-      },
-      feminino: {
-        under_25: {
-          flexao:    { min: 12, regular: 14, bom: 22, muitoBom: 30, excelente: 37 },
-          abdominal: { min: 28, regular: 30, bom: 39, muitoBom: 48, excelente: 56 },
-          corrida:   { min: 1700, regular: 1760, bom: 1950, muitoBom: 2200, excelente: 2490 }
-        },
-        '25_29': {
-          flexao:    { min: 11, regular: 13, bom: 20, muitoBom: 28, excelente: 35 },
-          abdominal: { min: 26, regular: 27, bom: 37, muitoBom: 47, excelente: 55 },
-          corrida:   { min: 1650, regular: 1700, bom: 1880, muitoBom: 2130, excelente: 2410 }
-        },
-        '30_34': {
-          flexao:    { min: 10, regular: 12, bom: 18, muitoBom: 26, excelente: 33 },
-          abdominal: { min: 23, regular: 25, bom: 34, muitoBom: 44, excelente: 52 },
-          corrida:   { min: 1600, regular: 1650, bom: 1800, muitoBom: 2060, excelente: 2330 }
-        },
-        '35_39': {
-          flexao:    { min: 9,  regular: 11, bom: 16, muitoBom: 24, excelente: 31 },
-          abdominal: { min: 20, regular: 22, bom: 30, muitoBom: 39, excelente: 46 },
-          corrida:   { min: 1550, regular: 1600, bom: 1720, muitoBom: 1980, excelente: 2250 }
-        },
-        '40_44': {
-          flexao:    { min: 8,  regular: 10, bom: 14, muitoBom: 21, excelente: 28 },
-          abdominal: { min: 17, regular: 19, bom: 26, muitoBom: 34, excelente: 42 },
-          corrida:   { min: 1500, regular: 1550, bom: 1640, muitoBom: 1900, excelente: 2160 }
-        },
-        '45_49': {
-          flexao:    { min: 7,  regular: 9,  bom: 12, muitoBom: 19, excelente: 25 },
-          abdominal: { min: 14, regular: 16, bom: 22, muitoBom: 30, excelente: 38 },
-          corrida:   { min: 1450, regular: 1500, bom: 1560, muitoBom: 1810, excelente: 2060 }
-        },
-        '50_plus': {
-          flexao:    { min: 6,  regular: 7,  bom: 10, muitoBom: 16, excelente: 22 },
-          abdominal: { min: 12, regular: 14, bom: 18, muitoBom: 25, excelente: 31 },
-          corrida:   { min: 1400, regular: 1450, bom: 1500, muitoBom: 1720, excelente: 1970 }
-        }
-      }
+    /* ---- nsca-2026-tabelas.js (NSCA 54-3/2026) ---- */
+    /* Tabelas oficiais NSCA 54-3/2026 (Anexo VI) e faixas de idade/estatura. Somente dados. */
+
+    // OIC 01 - Cintura Masculino (Anexo VI, item 1.1)
+    const CSV_CINTURA_M = `99,0,0,0,0,0,0|98.5,6,6,6,6,6,6|98,6.4,6.4,6.5,6.5,6.7,6.9|97.5,6.7,6.8,6.9,7.1,7.3,7.7|97,7.1,7.2,7.4,7.6,8,8.6|96.5,7.4,7.6,7.8,8.2,8.7,9.4|96,7.8,8,8.3,8.7,9.3,10.3|95.5,8.1,8.4,8.8,9.3,10,11.1|95,8.5,8.8,9.2,9.8,10.7,12|94.5,8.8,9.2,9.7,10.4,11.3,13.3|94,9.2,9.6,10.2,10.9,12,14.6|93.5,9.5,10,10.6,11.5,13,15.9|93,9.9,10.4,11.1,12,14,17.1|92.5,10.2,10.8,11.5,13.3,15,18.4|92,10.6,11.2,12,14.6,16,19.7|91.5,10.9,11.6,13.3,15.9,17,21|91,11.3,12,14.6,17.1,18,22.5|90.5,11.6,13.3,15.9,18.4,19,24|90,12,14.6,17.1,19.7,20,25.5|89.5,13.3,15.9,18.4,21,21,27|89,14.6,17.1,19.7,22.5,23,27.8|88.5,15.9,18.4,21,24,25,28.2|88,17.1,19.7,22.5,25.5,27,28.6|87.5,18.4,21,24,27,27.8,30|87,19.7,22.5,25.5,27.8,28.2,30|86.5,21,24,27,28.2,28.6,30|86,22.5,25.5,27.8,28.6,30,30|85.5,24,27,28.2,30,30,30|85,25.5,27.8,28.6,30,30,30|84.5,27,28.2,30,30,30,30|84,27.8,28.6,30,30,30,30|83.5,28.2,30,30,30,30,30|83,28.6,30,30,30,30,30|82.5,30,30,30,30,30,30`;
+
+    // OIC 05 - Cintura Feminino (Anexo VI, item 2.1)
+    const CSV_CINTURA_F = `90,0,0,0|89.5,6,6,6|89,6.7,6.7,7.2|88.5,7.3,7.3,8.4|88,8,8,9.6|87.5,8.7,8.7,10.8|87,9.3,9.3,12|86.5,10,10,14.3|86,10.7,10.7,15.8|85.5,11.3,11.3,17.3|85,12,12,21|84.5,13.5,16.5,23|84,15,21,25|83.5,16.5,23,27|83,18,25,27.8|82.5,19.5,27,28.2|82,21,27.8,28.6|81.5,23,28.2,30|81,25,28.6,30|80.5,27,30,30|80,27.8,30,30|79.5,28.2,30,30|79,28.6,30,30|78.5,30,30,30`;
+
+    // OIC 02 - Flexão Masculino (Anexo VI, item 1.2 - 9 faixas etárias)
+    const CSV_FLEXAO_M = `9,0,0,0,0,0,0,0,0,0|11,0,0,0,0,0,0,0,0,2|12,0,0,0,0,0,0,0,2,2.3|13,0,0,0,0,0,0,2,2.3,2.7|14,0,0,0,0,0,2,2.3,2.7,3|15,0,0,0,0,2,2.3,2.7,3,3.3|16,0,0,0,0,2.2,2.7,3,3.3,3.7|17,0,0,0,2,2.4,3,3.3,3.7,4|18,0,0,0,2.3,2.6,3.3,3.7,4,4.6|19,0,0,0,2.5,2.8,3.7,4,4.4,5.2|20,0,0,2,2.8,3,4,4.5,4.9,5.8|21,0,0,2.2,3,3.2,4.3,5,5.3,6.4|22,0,2,2.4,3.3,3.4,4.7,5.5,5.7,7|23,0,2.2,2.7,3.5,3.6,5,6,6.1,7.3|24,0,2.4,2.9,3.8,3.8,5.3,6.5,6.6,7.6|25,2,2.7,3.1,4,4,5.7,7,7,7.9|26,2.2,2.9,3.3,4.3,4.3,6,7.2,7.4,8.1|27,2.4,3.1,3.6,4.5,4.6,6.3,7.4,7.8,8.4|28,2.7,3.3,3.8,4.8,4.9,6.7,7.5,8.2,8.7|29,2.9,3.6,4,5,5.2,7,7.7,8.6,9|30,3.1,3.8,4.3,5.3,5.5,7.2,7.9,9,9.5|31,3.3,4,4.6,5.5,5.8,7.4,8.1,9.3,10|32,3.6,4.3,4.9,5.8,6.1,7.7,8.3,9.7,10|33,3.8,4.5,5.2,6,6.4,7.9,8.5,10,10|34,4,4.8,5.5,6.3,6.7,8.1,8.6,10,10|35,4.3,5.1,5.8,6.5,7,8.3,8.8,10,10|36,4.5,5.4,6.1,6.8,7.3,8.6,9,10,10|37,4.8,5.6,6.4,7,7.7,8.8,9.3,10,10|38,5.1,5.9,6.7,7.3,8,9,9.7,10,10|39,5.4,6.2,7,7.7,8.3,9.3,10,10,10|40,5.6,6.5,7.3,8,8.7,9.7,10,10,10|41,5.9,6.7,7.6,8.3,9,10,10,10,10|42,6.2,7,7.9,8.7,9.3,10,10,10,10|43,6.5,7.2,8.1,9,9.7,10,10,10,10|44,6.7,7.4,8.4,9.3,10,10,10,10,10|45,7,7.5,8.7,9.7,10,10,10,10,10|46,7.2,7.7,9,10,10,10,10,10,10|47,7.4,7.9,9.3,10,10,10,10,10,10|48,7.6,8.1,9.5,10,10,10,10,10,10|49,7.8,8.3,9.8,10,10,10,10,10,10|50,8,8.5,10,10,10,10,10,10,10|51,8.2,8.6,10,10,10,10,10,10,10|52,8.4,8.8,10,10,10,10,10,10,10|53,8.6,9,10,10,10,10,10,10,10|54,8.8,9.2,10,10,10,10,10,10,10|55,9,9.4,10,10,10,10,10,10,10|56,9.2,9.6,10,10,10,10,10,10,10|57,9.4,9.8,10,10,10,10,10,10,10|58,9.6,10,10,10,10,10,10,10,10|59,9.8,10,10,10,10,10,10,10,10|60,10,10,10,10,10,10,10,10,10`;
+
+    // OIC 06 - Flexão Feminino SEM JOELHOS (Anexo VI, item 2.2 / Tabela 2 - Atualizada 2026 com 9 colunas e até 26 reps)
+    const CSV_FLEXAO_F_SEM_JOELHOS = `5,0,0,0,0,0,0,0,0,2|6,0,0,0,0,0,0,0,2,4|7,0,0,0,0,0,0,2,4,4.8|8,0,0,0,0,0,2,4,4.8,5.6|9,0,0,0,0,2,4,4.6,5.6,6.3|10,0,0,0,2,4,4.6,5.2,6.3,7|11,2,0,2,4,4.6,5.2,5.8,7,7.7|12,4,2,4,4.6,5.2,5.8,6.4,7.7,8.4|13,4.6,4,4.6,5.2,5.8,6.4,7,8.4,9|14,5.2,4.5,5.2,5.8,6.4,7,7.7,9,9.4|15,5.8,5,5.8,6.4,7,7.7,8.4,9.4,9.7|16,6.4,5.5,6.4,7,7.7,8.4,9,9.7,10|17,7,6,7,7.7,8.4,9,9.3,10,10|18,7.7,6.5,7.7,8.4,9,9.3,9.5,10,10|19,8.4,7,8.4,9,9.3,9.5,9.8,10,10|20,9,7.7,9,9.3,9.5,9.8,10,10,10|21,9.3,8.4,9.3,9.5,9.8,10,10,10,10|22,9.5,9,9.5,9.8,10,10,10,10,10|23,9.8,9.3,9.8,10,10,10,10,10,10|24,10,9.5,10,10,10,10,10,10,10|25,10,9.8,10,10,10,10,10,10,10|26,10,10,10,10,10,10,10,10,10`;
+
+    // OIC 03 - Abdominal Masculino (Anexo VI, item 1.3 - 9 faixas etárias)
+    const CSV_ABDOMINAL_M = `19,0,0,0,0,0,0,0,0,0|20,0,0,0,0,0,0,0,0,2|21,0,0,0,0,0,0,0,0,2.3|22,0,0,0,0,0,0,0,2,2.6|23,0,0,0,0,0,0,0,2.3,2.9|24,0,0,0,0,0,0,0,2.5,3.1|25,0,0,0,0,0,0,2,2.8,3.4|26,0,0,0,0,0,0,2.3,3,3.7|27,0,0,0,0,0,2,2.7,3.3,4|28,0,0,0,0,0,2.2,3,3.5,4.4|29,0,0,0,0,0,2.4,3.3,3.8,4.8|30,0,0,0,0,2,2.7,3.7,4,5.1|31,0,0,0,2,2.2,2.9,4,4.4,5.5|32,0,0,2,2.2,2.4,3.1,4.3,4.8,5.9|33,0,0,2.2,2.4,2.7,3.3,4.7,5.1,6.3|34,0,0,2.4,2.7,2.9,3.6,5,5.5,6.6|35,0,2,2.6,2.9,3.1,3.8,5.3,5.9,7|36,0,2.2,2.8,3.1,3.3,4,5.7,6.3,7.4|37,2,2.4,3,3.3,3.6,4.3,6,6.6,7.8|38,2.3,2.6,3.2,3.6,3.8,4.6,6.3,7,8.2|39,2.5,2.8,3.4,3.8,4,4.9,6.7,7.2,8.6|40,2.8,3,3.6,4,4.3,5.2,7,7.4,9|41,3,3.2,3.8,4.3,4.7,5.5,7.2,7.6,9.3|42,3.3,3.4,4,4.6,5,5.8,7.4,7.8,9.7|43,3.5,3.6,4.4,4.9,5.3,6.1,7.6,8,10|44,3.8,3.8,4.8,5.2,5.7,6.4,7.8,8.2,10|45,4,4,5.1,5.5,6,6.7,8,8.4,10|46,4.3,4.4,5.5,5.8,6.3,7,8.2,8.6,10|47,4.6,4.8,5.9,6.1,6.7,7.3,8.4,8.8,10|48,4.9,5.1,6.3,6.4,7,7.6,8.6,9,10|49,5.2,5.5,6.6,6.7,7.3,7.9,8.8,9.3,10|50,5.5,5.9,7,7,7.6,8.1,9,9.7,10|51,5.8,6.3,7.3,7.3,7.9,8.4,9.3,10,10|52,6.1,6.6,7.5,7.7,8.1,8.7,9.7,10,10|53,6.4,7,7.8,8,8.4,9,10,10,10|54,6.7,7.3,8,8.3,8.7,9.3,10,10,10|55,7,7.5,8.3,8.7,9,9.7,10,10,10|56,7.3,7.8,8.5,9,9.3,10,10,10,10|57,7.6,8,8.8,9.3,9.7,10,10,10,10|58,7.9,8.3,9,9.5,10,10,10,10,10|59,8.1,8.5,9.3,9.8,10,10,10,10,10|60,8.4,8.8,9.5,10,10,10,10,10,10|61,8.7,9,9.8,10,10,10,10,10,10|62,9,9.3,10,10,10,10,10,10,10|63,9.3,9.5,10,10,10,10,10,10,10|64,9.5,9.8,10,10,10,10,10,10,10|65,9.8,10,10,10,10,10,10,10,10|66,10,10,10,10,10,10,10,10,10`;
+
+    // OIC 07 - Abdominal Feminino (Anexo VI, item 2.3 - 10 faixas etárias)
+    const CSV_ABDOMINAL_F = `10,0,0,0,0,0,0,0,0,0,0|11,0,0,0,0,0,0,0,0,0,2|12,0,0,0,0,0,0,0,0,2,2.3|13,0,0,0,0,0,0,0,0,2.3,2.6|14,0,0,0,0,0,0,0,0,2.5,2.9|15,0,0,0,0,0,0,0,2,2.8,3.1|16,0,0,0,0,0,0,0,2.3,3,3.4|17,0,0,0,0,0,0,2,2.6,3.3,3.7|18,0,0,0,0,0,0,2.2,2.9,3.5,4|19,0,0,0,0,0,0,2.4,3.1,3.8,4.4|20,0,0,0,0,0,2,2.7,3.4,4,4.9|21,0,0,0,0,2,2.2,2.9,3.7,4.3,5.3|22,0,0,0,0,2.2,2.4,3.1,4,4.7,5.7|23,0,0,0,0,2.4,2.6,3.3,4.4,5,6.1|24,0,0,0,0,2.5,2.8,3.6,4.8,5.3,6.6|25,0,0,0,2,2.7,3,3.8,5.1,5.7,7|26,0,0,0,2.2,2.9,3.2,4,5.5,6,7.4|27,0,0,2,2.4,3.1,3.4,4.2,5.9,6.3,7.8|28,0,0,2.2,2.6,3.3,3.6,4.5,6.3,6.7,8.2|29,0,2,2.4,2.8,3.5,3.8,4.7,6.6,7,8.6|30,2,2.2,2.6,3,3.6,4,4.9,7,7.2,9|31,2.2,2.4,2.8,3.2,3.8,4.3,5.2,7.2,7.4,9.5|32,2.4,2.6,3,3.4,4,4.6,5.4,7.3,7.5,10|33,2.6,2.8,3.2,3.6,4.3,4.9,5.6,7.5,7.7,10|34,2.8,3,3.4,3.8,4.6,5.2,5.8,7.7,7.9,10|35,3,3.2,3.6,4,4.9,5.5,6.1,7.8,8.1,10|36,3.2,3.4,3.8,4.3,5.2,5.8,6.3,8,8.3,10|37,3.4,3.6,4,4.6,5.5,6.1,6.5,8.2,8.5,10|38,3.6,3.8,4.3,4.9,5.8,6.4,6.8,8.3,8.6,10|39,3.8,4,4.6,5.2,6.1,6.7,7,8.5,8.8,10|40,4,4.3,4.9,5.5,6.4,7,7.3,8.7,9,10|41,4.3,4.7,5.2,5.8,6.7,7.2,7.6,8.8,9.5,10|42,4.6,5,5.5,6.1,7,7.4,7.9,9,10,10|43,4.9,5.3,5.8,6.4,7.3,7.7,8.1,9.5,10,10|44,5.2,5.7,6.1,6.7,7.5,7.9,8.4,10,10,10|45,5.5,6,6.4,7,7.8,8.1,8.7,10,10,10|46,5.8,6.3,6.7,7.3,8,8.3,9,10,10,10|47,6.1,6.7,7,7.5,8.3,8.6,9.3,10,10,10|48,6.4,7,7.3,7.8,8.5,8.8,9.7,10,10,10|49,6.7,7.3,7.5,8,8.8,9,10,10,10,10|50,7,7.5,7.8,8.3,9,9.3,10,10,10,10|51,7.3,7.8,8,8.5,9.3,9.7,10,10,10,10|52,7.5,8,8.3,8.8,9.7,10,10,10,10,10|53,7.8,8.3,8.5,9,10,10,10,10,10,10|54,8,8.5,8.8,9.3,10,10,10,10,10,10|55,8.3,8.8,9,9.5,10,10,10,10,10,10|56,8.5,9,9.3,9.8,10,10,10,10,10,10|57,8.8,9.3,9.7,10,10,10,10,10,10,10|58,9,9.7,10,10,10,10,10,10,10,10|59,9.3,10,10,10,10,10,10,10,10,10|60,9.5,10,10,10,10,10,10,10,10,10|61,9.8,10,10,10,10,10,10,10,10,10|62,10,10,10,10,10,10,10,10,10,10`;
+
+    // OIC 04 - Corrida 12 min Masculino (Anexo VI, item 1.4)
+    const CSV_CORRIDA_M = `1880,0,0,0,0,0,0,0,0|1890,0,0,0,0,0,0,0,10|1900,0,0,0,0,0,0,0,10.6|1910,0,0,0,0,0,0,10,11.3|1920,0,0,0,0,0,0,10.6,11.9|1930,0,0,0,0,0,0,11.2,12.5|1940,0,0,0,0,0,0,11.8,13.1|1950,0,0,0,0,0,0,12.4,13.8|1960,0,0,0,0,0,10,12.9,14.4|1970,0,0,0,0,0,10.7,13.5,15|1980,0,0,0,0,0,11.4,14.1,15.6|1990,0,0,0,0,0,12.1,14.7,16.3|2000,0,0,0,0,10,12.9,15.3,16.9|2010,0,0,0,10,10.5,13.6,15.9,17.5|2020,0,0,0,10.4,10.9,14.3,16.5,18.1|2030,0,0,0,10.8,11.4,15,17.1,18.8|2040,0,0,0,11.3,11.8,15.7,17.6,19.4|2050,0,0,10,11.7,12.3,16.4,18.2,20|2060,0,0,10.4,12.1,12.7,17.1,18.8,20.7|2070,0,0,10.8,12.5,13.2,17.9,19.4,21.4|2080,0,10,11.2,12.9,13.6,18.6,20,22|2090,0,10.4,11.6,13.3,14.1,19.3,20.7,22.7|2100,0,10.7,12,13.8,14.5,20,21.4,23.4|2110,0,11.1,12.4,14.2,15,20.6,22,24.1|2120,0,11.5,12.8,14.6,15.5,21.2,22.7,24.8|2130,10,11.9,13.2,15,15.9,21.8,23.4,25.5|2140,10.4,12.2,13.6,15.4,16.4,22.4,24.1,26.1|2150,10.7,12.6,14,15.8,16.8,23,24.8,26.8|2160,11.1,13.0,14.4,16.3,17.3,23.6,25.5,27.5|2170,11.4,13.3,14.8,16.7,17.7,24.2,26.1,28.2|2180,11.8,13.7,15.2,17.1,18.2,24.8,26.8,28.9|2190,12.1,14.1,15.6,17.5,18.6,25.4,27.5,29.5|2200,12.5,14.4,16.0,17.9,19.1,26.0,28.2,30.2|2210,12.9,14.8,16.4,18.3,19.5,26.6,28.9,30.9|2220,13.2,15.2,16.8,18.8,20.0,27.2,29.5,31.6|2230,13.6,15.6,17.2,19.2,20.8,27.8,30.2,32.3|2240,13.9,15.9,17.6,19.6,21.7,28.4,30.9,33.0|2250,14.3,16.3,18.0,20.0,22.5,29.0,31.6,33.6|2260,14.6,16.7,18.4,20.5,23.3,29.6,32.3,34.3|2270,15.0,17.0,18.8,21.0,24.2,30.2,33.0,35.0|2280,15.4,17.4,19.2,21.5,25.0,30.8,33.6,35.6|2290,15.7,17.8,19.6,22.0,25.8,31.4,34.3,36.2|2300,16.1,18.1,20.0,22.5,26.7,32.0,35.0,36.8|2310,16.4,18.5,20.5,23.0,27.5,32.6,35.3,37.4|2320,16.8,18.9,21.0,23.5,28.3,33.2,35.6,37.9|2330,17.1,19.3,21.5,24.0,29.2,33.8,36.0,38.5|2340,17.5,19.6,22.0,24.5,30.0,34.4,36.3,39.1|2350,17.9,20.0,22.5,25.0,30.8,35.0,36.6,39.7|2360,18.2,20.6,23.0,25.5,31.7,35.3,36.9,40.3|2370,18.6,21.1,23.5,26.0,32.5,35.6,37.3,40.9|2380,18.9,21.7,24.0,26.5,33.3,36.0,37.6,41.5|2390,19.3,22.2,24.5,27.0,34.2,36.3,37.9,42.1|2400,19.6,22.8,25.0,27.5,35.0,36.6,38.2,42.6|2410,20.0,23.3,25.5,28.0,35.3,36.9,38.5,43.2|2420,20.5,23.9,26.0,28.5,35.7,37.3,38.9,43.8|2430,21.0,24.4,26.5,29.0,36.0,37.6,39.2,44.4|2440,21.6,25.0,27.0,29.5,36.3,37.9,39.5,45.0|2450,22.1,25.6,27.5,30.0,36.7,38.2,39.8,46.3|2460,22.6,26.1,28.0,30.5,37.0,38.5,40.2,47.5|2470,23.1,26.7,28.5,31.0,37.3,38.9,40.5,48.8|2480,23.6,27.2,29.0,31.5,37.7,39.2,40.8,50.0|2490,24.1,27.8,29.5,32.0,38.0,39.5,41.1,50.0|2500,24.7,28.3,30.0,32.5,38.3,39.8,41.5,50.0|2510,25.2,28.9,30.5,33.0,38.7,40.2,41.8,50.0|2520,25.7,29.4,31.0,33.5,39.0,40.5,42.1,50.0|2530,26.2,30.0,31.5,34.0,39.3,40.8,42.4,50.0|2540,26.7,30.6,32.0,34.5,39.7,41.1,42.7,50.0|2550,27.2,31.1,32.5,35.0,40.0,41.5,43.1,50.0|2560,27.8,31.7,33.0,35.4,40.3,41.8,43.4,50.0|2570,28.3,32.2,33.5,35.8,40.7,42.1,43.7,50.0|2580,28.8,32.8,34.0,36.3,41.0,42.4,44.0,50.0|2590,29.3,33.3,34.5,36.7,41.3,42.7,44.4,50.0|2600,29.8,33.9,35.0,37.1,41.7,43.1,44.7,50.0|2610,30.3,34.4,35.5,37.5,42.0,43.4,45.0,50.0|2620,30.9,35.0,36.0,37.9,42.3,43.7,46.0,50.0|2630,31.4,35.5,36.4,38.3,42.7,44.0,47.0,50.0|2640,31.9,36.0,36.9,38.8,43.0,44.4,48.0,50.0|2650,32.4,36.4,37.4,39.2,43.3,44.7,49.0,50.0|2660,32.9,36.9,37.9,39.6,43.7,45.0,50.0,50.0|2670,33.4,37.4,38.3,40.0,44.0,46.3,50.0,50.0|2680,34.0,37.9,38.8,40.4,44.3,47.5,50.0,50.0|2690,34.5,38.3,39.3,40.8,44.7,48.8,50.0,50.0|2700,35.0,38.8,39.8,41.3,45.0,50.0,50.0,50.0|2710,35.4,39.3,40.2,41.7,46.0,50.0,50.0,50.0|2720,35.8,39.8,40.7,42.1,47.0,50.0,50.0,50.0|2730,36.2,40.2,41.2,42.5,48.0,50.0,50.0,50.0|2740,36.5,40.7,41.7,42.9,49.0,50.0,50.0,50.0|2750,36.9,41.2,42.1,43.3,50.0,50.0,50.0,50.0|2760,37.3,41.7,42.6,43.8,50.0,50.0,50.0,50.0|2770,37.7,42.1,43.1,44.2,50.0,50.0,50.0,50.0|2780,38.1,42.6,43.6,44.6,50.0,50.0,50.0,50.0|2790,38.5,43.1,44.0,45.0,50.0,50.0,50.0,50.0|2800,38.8,43.6,44.5,46.0,50.0,50.0,50.0,50.0|2810,39.2,44.0,45.0,47.0,50.0,50.0,50.0,50.0|2820,39.6,44.5,46.0,48.0,50.0,50.0,50.0,50.0|2830,40.0,45.0,47.0,49.0,50.0,50.0,50.0,50.0|2840,40.4,45.7,48.0,50.0,50.0,50.0,50.0,50.0|2850,40.8,46.4,49.0,50.0,50.0,50.0,50.0,50.0|2860,41.2,47.1,50.0,50.0,50.0,50.0,50.0,50.0|2870,41.5,47.9,50.0,50.0,50.0,50.0,50.0,50.0|2880,41.9,48.6,50.0,50.0,50.0,50.0,50.0,50.0|2890,42.3,49.3,50.0,50.0,50.0,50.0,50.0,50.0|2900,42.7,50.0,50.0,50.0,50.0,50.0,50.0,50.0|2910,43.1,50.0,50.0,50.0,50.0,50.0,50.0,50.0|2920,43.5,50.0,50.0,50.0,50.0,50.0,50.0,50.0|2930,43.8,50.0,50.0,50.0,50.0,50.0,50.0,50.0|2940,44.2,50.0,50.0,50.0,50.0,50.0,50.0,50.0|2950,44.6,50.0,50.0,50.0,50.0,50.0,50.0,50.0|2960,45.0,50.0,50.0,50.0,50.0,50.0,50.0,50.0|2970,45.6,50.0,50.0,50.0,50.0,50.0,50.0,50.0|2980,46.1,50.0,50.0,50.0,50.0,50.0,50.0,50.0|2990,46.7,50.0,50.0,50.0,50.0,50.0,50.0,50.0|3000,47.2,50.0,50.0,50.0,50.0,50.0,50.0,50.0|3010,47.8,50.0,50.0,50.0,50.0,50.0,50.0,50.0|3020,48.3,50.0,50.0,50.0,50.0,50.0,50.0,50.0|3030,48.9,50.0,50.0,50.0,50.0,50.0,50.0,50.0|3040,49.4,50.0,50.0,50.0,50.0,50.0,50.0,50.0|3050,50,50,50,50,50,50,50,50`;
+
+    // OIC 08 - Corrida 12 min Feminino (Anexo VI, item 2.5)
+    const CSV_CORRIDA_F = `1530,0,0,0,0,0|1540,0,0,0,0,10|1550,0,0,0,0,10.9|1560,0,0,0,0,11.8|1570,0,0,0,0,12.7|1580,0,0,0,0,13.6|1590,0,0,0,0,14.5|1600,0,0,0,10,15.5|1610,0,0,0,10.9,16.4|1620,0,0,0,11.8,17.3|1630,0,0,0,12.7,18.2|1640,0,0,0,13.6,19.1|1650,0,0,10,14.5,20|1660,0,0,10.6,15.5,20.7|1670,0,0,11.1,16.4,21.4|1680,0,0,11.7,17.3,22.1|1690,0,10,12.2,18.2,22.9|1700,0,10.6,12.8,19.1,23.6|1710,0,11.1,13.3,20,24.3|1720,0,11.7,13.9,20.8,25|1730,0,12.2,14.4,21.6,25.7|1740,0,12.8,15,22.4,26.4|1750,0,13.3,15.6,23.2,27.1|1760,10,13.9,16.1,23.9,27.9|1770,10.5,14.4,16.7,24.7,28.6|1780,11.1,15,17.2,25.5,29.3|1790,11.6,15.6,17.8,26.3,30|1800,12.1,16.1,18.3,27.1,30.7|1810,12.6,16.7,18.9,27.9,31.4|1820,13.2,17.2,19.4,28.7,32.1|1830,13.7,17.8,20,29.5,32.9|1840,14.2,18.3,20.6,30.3,33.6|1850,14.7,18.9,21.1,31.1,34.3|1860,15.3,19.4,21.7,31.8,35|1870,15.8,20,22.2,32.6,35.7|1880,16.3,20.5,22.8,33.4,36.4|1890,16.8,21.1,23.3,34.2,37.1|1900,17.4,21.6,23.9,35,37.9|1910,17.9,22.1,24.4,35.3,38.6|1920,18.4,22.7,25,35.7,39.3|1930,18.9,23.2,25.6,36,40|1940,19.5,23.8,26.1,36.3,40.7|1950,20,24.3,26.7,36.7,41.4|1960,20.6,24.8,27.2,37,42.1|1970,21.2,25.4,27.8,37.3,42.9|1980,21.8,25.9,28.3,37.7,43.6|1990,22.4,26.4,28.9,38,44.3|2000,23,27,29.4,38.3,45|2010,23.6,27.5,30,38.7,46.3|2020,24.2,28,30.6,39,47.5|2030,24.8,28.6,31.1,39.3,48.8|2040,25.4,29.1,31.7,39.7,50|2050,26,29.6,32.2,40,50|2060,26.6,30.2,32.8,40.3,50|2070,27.2,30.7,33.3,40.7,50|2080,27.8,31.3,33.9,41,50|2090,28.4,31.8,34.4,41.3,50|2100,29,32.3,35,41.7,50|2110,29.6,32.9,35.4,42,50|2120,30.2,33.4,35.8,42.3,50|2130,30.8,33.9,36.2,42.7,50|2140,31.4,34.5,36.5,43,50|2150,32,35,36.9,43.3,50|2160,32.6,35.4,37.3,43.7,50|2170,33.2,35.8,37.7,44,50|2180,33.8,36.2,38.1,44.3,50|2190,34.4,36.6,38.5,44.7,50|2200,35,37,38.8,45,50|2210,35.3,37.4,39.2,46.3,50|2220,35.7,37.8,39.6,47.5,50|2230,36,38.2,40,48.8,50|2240,36.4,38.6,40.4,50,50|2250,36.7,39,40.8,50,50|2260,37.1,39.4,41.2,50,50|2270,37.4,39.8,41.5,50,50|2280,37.8,40.2,41.9,50,50|2290,38.1,40.6,42.3,50,50|2300,38.4,41,42.7,50,50|2310,38.8,41.4,43.1,50,50|2320,39.1,41.8,43.5,50,50|2330,39.5,42.2,43.8,50,50|2340,39.8,42.6,44.2,50,50|2350,40.2,43,44.6,50,50|2360,40.5,43.4,45,50,50|2370,40.9,43.8,46.3,50,50|2380,41.2,44.2,47.5,50,50|2390,41.6,44.6,48.8,50,50|2400,41.9,45,50,50,50|2410,42.2,46.3,50,50,50|2420,42.6,47.5,50,50,50|2430,42.9,48.8,50,50,50|2440,43.3,50,50,50,50|2450,43.6,50,50,50,50|2460,44,50,50,50,50|2470,44.3,50,50,50,50|2480,44.7,50,50,50,50|2490,45,50,50,50,50|2500,45.6,50,50,50,50|2510,46.3,50,50,50,50|2520,46.9,50,50,50,50|2530,47.5,50,50,50,50|2540,48.1,50,50,50,50|2550,48.8,50,50,50,50|2560,49.4,50,50,50,50|2570,50,50,50,50,50`;
+
+    // OIC 04 - Marcha 4,8 km Masculino (Anexo VI, item 1.5)
+    const CSV_MARCHA_M = `3114,0,0,0,0,0|3097,0,0,0,0,0|3080,0,0,0,0,0|3064,0,0,0,0,0|3048,0,0,0,0,0|3032,0,0,0,0,0|3016,0,0,0,0,0|3000,0,0,0,0,10|2979,0,0,0,0,10.6|2964,0,0,0,0,11.1|2949,0,0,0,0,11.7|2934,0,0,0,0,12.2|2919,0,0,0,0,12.8|2904,0,0,0,0,13.3|2890,0,0,0,0,13.9|2875,0,0,0,0,14.4|2861,0,0,0,0,15|2847,0,0,0,0,15.6|2833,0,0,0,0,16.1|2820,0,0,0,10,16.7|2814,0,0,0,10.5,17.2|2801,0,0,0,11,17.8|2787,0,0,0,11.5,18.3|2774,0,0,0,12,18.9|2760,0,0,0,12.5,19.4|2747,0,0,0,13,20|2734,0,0,0,13.5,20.8|2721,0,0,0,14,21.7|2708,0,0,0,14.5,22.5|2696,0,0,0,15,23.3|2683,0,0,0,15.5,24.2|2670,0,0,10,16,25|2650,0,0,10.5,16.5,25.8|2638,0,0,11,17,26.7|2626,0,0,11.5,17.5,27.5|2614,0,0,12,18,28.3|2602,0,0,12.5,18.5,29.2|2591,0,0,13,19,30|2579,0,0,13.5,19.5,30.8|2568,0,0,14,20,31.7|2556,0,0,14.5,20.8,32.5|2545,0,0,15,21.6,33.3|2534,0,0,15.5,22.4,34.2|2520,0,10,16,23.2,35|2515,0,10.6,16.5,23.9,35.6|2504,0,11.1,17,24.7,36.1|2494,0,11.7,17.5,25.5,36.7|2483,0,12.2,18,26.3,37.2|2472,0,12.8,18.5,27.1,37.8|2460,10,13.3,19,27.9,38.3|2451,10.5,13.9,19.5,28.7,38.9|2441,11.1,14.4,20,29.5,39.4|2430,11.6,15,20.8,30.3,40|2420,12.1,15.6,21.6,31.1,40.6|2410,12.6,16.1,22.4,31.8,41.1|2400,13.2,16.7,23.2,32.6,41.7|2390,13.7,17.2,23.9,33.4,42.2|2380,14.2,17.8,24.7,34.2,42.8|2370,14.7,18.3,25.5,35,43.3|2361,15.3,18.9,26.3,35.5,43.9|2351,15.8,19.4,27.1,36,44.4|2340,16.3,20,27.9,36.5,45|2332,16.8,20.8,28.7,37,46.7|2323,17.4,21.7,29.5,37.5,48.3|2313,17.9,22.5,30.3,38.8,50|2304,18.4,23.3,31.1,38.5,50|2295,18.9,24.2,31.8,39,50|2286,19.5,25,32.6,39.5,50|2277,20,25.8,33.4,40,50|2268,20.8,26.7,34.2,40.5,50|2259,21.6,27.5,35,41,50|2250,22.4,28.3,35.5,41.5,50|2241,23.2,29.2,36.1,42,50|2233,23.9,30,36.6,42.5,50|2224,24.7,30.8,37.1,43,50|2215,25.5,31.7,37.6,43.5,50|2207,26.3,32.5,38.2,44,50|2198,27.1,33.3,38.7,44.5,50|2190,27.9,34.2,39.2,45,50|2179,28.7,35,39.7,46.7,50|2171,29.5,35.6,40.3,48.3,50|2163,30.3,36.1,40.8,50,50|2155,31.1,36.7,41.3,50,50|2147,31.8,37.2,41.8,50,50|2139,32.6,37.8,42.4,50,50|2131,33.4,38.3,42.9,50,50|2123,34.2,38.9,43.4,50,50|2115,35,39.4,43.9,50,50|2107,35.5,40,44.5,50,50|2100,36.1,40.6,45,50,50|2092,36.6,41.1,46.7,50,50|2084,37.1,41.7,48.3,50,50|2077,37.6,42.2,50,50,50|2069,38.2,42.8,50,50,50|2062,38.7,43.3,50,50,50|2055,39.2,43.9,50,50,50|2047,39.7,44.4,50,50,50|2040,40.3,45,50,50,50|2035,40.8,46.7,50,50,50|2028,41.3,48.3,50,50,50|2021,41.8,50,50,50,50|2014,42.4,50,50,50,50|2007,42.9,50,50,50,50|2000,43.4,50,50,50,50|1993,43.9,50,50,50,50|1986,44.5,50,50,50,50|1980,45,50,50,50,50|1973,46.7,50,50,50,50|1966,48.3,50,50,50,50|1959,50,50,50,50,50`;
+
+    // OIC 05 (Substitutivo OIC 08) - Marcha 4,8 km Feminino (Anexo VI, item 2.6)
+    const CSV_MARCHA_F = `3221,0,0,0,0,0|3206,0,0,0,0,0|3191,0,0,0,0,0|3176,0,0,0,0,0|3162,0,0,0,0,0|3148,0,0,0,0,0|3133,0,0,0,0,0|3120,0,0,0,0,10|3111,0,0,0,0,10.6|3097,0,0,0,0,11.2|3083,0,0,0,0,11.8|3069,0,0,0,0,12.4|3056,0,0,0,0,12.9|3042,0,0,0,0,13.5|3029,0,0,0,0,14.1|3016,0,0,0,0,14.7|3003,0,0,0,0,15.3|2990,0,0,0,0,15.9|2977,0,0,0,0,16.5|2964,0,0,0,0,17.1|2951,0,0,0,0,17.6|2940,0,0,0,10,18.2|2931,0,0,0,10.5,18.8|2919,0,0,0,11,19.4|2907,0,0,0,11.5,20|2894,0,0,0,12,20.8|2882,0,0,0,12.5,21.7|2870,0,0,0,13,22.5|2859,0,0,0,13.5,23.3|2847,0,0,0,14,24.2|2835,0,0,0,14.5,25|2824,0,0,0,15,25.8|2812,0,0,0,15.5,26.7|2801,0,0,0,16,27.5|2790,0,0,10,16.5,28.3|2778,0,0,10.5,17,29.2|2767,0,0,11.1,17.5,30|2756,0,0,11.6,18,30.8|2745,0,0,12.1,18.5,31.7|2734,0,0,12.6,19,32.5|2723,0,0,13.2,19.5,33.3|2713,0,0,13.7,20,34.2|2702,0,0,14.2,20.8,35|2692,0,0,14.7,21.5,35.6|2681,0,0,15.3,22.3,36.1|2671,0,0,15.8,23,36.7|2661,0,0,16.3,23.8,37.2|2650,0,0,16.8,24.5,37.8|2640,0,10,17.4,25.3,38.3|2628,0,10.5,17.9,26,38.9|2618,0,11.1,18.4,26.8,39.4|2608,0,11.6,18.9,27.5,40|2598,0,12.1,19.5,28.3,40.6|2589,0,12.6,20,29,41.1|2580,10,13.2,20.8,29.8,41.7|2568,10.5,13.7,21.5,30.5,42.2|2558,11,14.2,22.3,31.3,42.8|2549,11.5,14.7,23,32,43.3|2539,12,15.3,23.8,32.8,43.9|2530,12.5,15.8,24.5,33.5,44.4|2520,13,16.3,25.3,34.3,45|2512,13.5,16.8,26,35,46.7|2503,14,17.4,26.8,35.5,48.3|2494,14.5,17.9,27.5,36,50|2485,15,18.4,28.3,36.5,50|2476,15.5,18.9,29,37,50|2467,16,19.5,29.8,37.5,50|2458,16.5,20,30.5,38,50|2449,17,20.8,31.3,38.5,50|2441,17.5,21.6,32,39,50|2432,18,22.4,32.8,39.5,50|2424,18.5,23.2,33.5,40,50|2415,19,23.9,34.3,40.5,50|2407,19.5,24.7,35,41,50|2398,20,25.5,35.5,41.5,50|2390,20.8,26.3,36,42,50|2382,21.5,27.1,36.5,42.5,50|2374,22.3,27.9,37,43,50|2366,23,28.7,37.5,43.5,50|2357,23.8,29.5,38,44,50|2349,24.5,30.3,38.5,44.5,50|2340,25.3,31.1,39,45,50|2335,26,31.8,39.5,46.7,50|2327,26.8,32.6,40,48.3,50|2319,27.5,33.4,40.5,50,50|2312,28.3,34.2,41,50,50|2304,29,35,41.5,50,50|2296,29.8,35.5,42,50,50|2289,30.5,36,42.5,50,50|2281,31.3,36.5,43,50,50|2274,32,37,43.5,50,50|2266,32.8,37.5,44,50,50|2259,33.5,38,44.5,50,50|2250,34.3,38.5,45,50,50|2244,35,39,46.7,50,50|2237,35.5,39.5,48.3,50,50|2230,36,40,50,50,50|2223,36.4,40.5,50,50,50|2215,36.9,41,50,50,50|2208,37.4,41.5,50,50,50|2201,37.9,42,50,50,50|2194,38.3,42.5,50,50,50|2187,38.8,43,50,50,50|2180,39.3,43.5,50,50,50|2174,39.8,44,50,50,50|2167,40.2,44.5,50,50,50|2160,40.7,45,50,50,50|2153,41.2,46.7,50,50,50|2147,41.7,48.3,50,50,50|2140,42.1,50,50,50,50|2133,42.6,50,50,50,50|2127,43.1,50,50,50,50|2120,43.6,50,50,50,50|2114,44,50,50,50,50|2107,44.5,50,50,50,50|2100,45,50,50,50,50|2095,46.7,50,50,50,50|2088,48.3,50,50,50,50|2082,50,50,50,50,50`;
+
+    const parseCSV = str => str.split('|').map(r => { let p = r.split(',').map(Number); return [p[0], p.slice(1)]; });
+    const parseObj = str => Object.fromEntries(str.split('|').map(r => { let p = r.split(',').map(Number); return [p[0], p.slice(1)]; }));
+
+    const OIC01 = parseCSV(CSV_CINTURA_M); const OIC05 = parseCSV(CSV_CINTURA_F);
+    const OIC02 = parseObj(CSV_FLEXAO_M);  const OIC06_SEM_JOELHO = parseObj(CSV_FLEXAO_F_SEM_JOELHOS);
+    const OIC03 = parseObj(CSV_ABDOMINAL_M); const OIC07 = parseObj(CSV_ABDOMINAL_F);
+    const OIC04_ROWS = parseCSV(CSV_CORRIDA_M); const OIC08_ROWS = parseCSV(CSV_CORRIDA_F);
+    const OIC04_MARCHA_ROWS = parseCSV(CSV_MARCHA_M); const OIC08_MARCHA_ROWS = parseCSV(CSV_MARCHA_F);
+
+    const M_COLS = { 
+      OIC01: est => est<=166?0 : est<=171?1 : est<=175?2 : est<=180?3 : est<=188?4 : 5,
+      OIC02: ida => ida<=20?0 : ida<=30?1 : ida<=34?2 : ida<=38?3 : ida<=41?4 : ida<=43?5 : ida<=49?6 : ida<=52?7 : 8,
+      OIC03: ida => ida<=27?0 : ida<=30?1 : ida<=33?2 : ida<=35?3 : ida<=38?4 : ida<=41?5 : ida<=44?6 : ida<=50?7 : 8,
+      OIC04: ida => ida<=29?0 : ida<=31?1 : ida<=35?2 : ida<=38?3 : ida<=41?4 : ida<=43?5 : ida<=47?6 : 7,
+      MARCH: ida => ida<=19?0 : ida<=29?1 : ida<=39?2 : ida<=49?3 : 4 
     };
 
-    const NOMES_FAIXAS = {
-      under_25: '< 25 anos',
-      '25_29': '25 a 29 anos',
-      '30_34': '30 a 34 anos',
-      '35_39': '35 a 39 anos',
-      '40_44': '40 a 44 anos',
-      '45_49': '45 a 49 anos',
-      '50_plus': '50 anos ou mais'
+    const F_COLS = { 
+      OIC05: est => est<=161?0 : est<=166?1 : 2,
+      // 9 Faixas etárias oficiais da reedição 2026 (Anexo VI 2.2): 18-21, 22-25, 26-29, 30-33, 34-37, 38-41, 42-45, 46-49, >=50
+      OIC06: ida => ida<=21?0 : ida<=25?1 : ida<=29?2 : ida<=33?3 : ida<=37?4 : ida<=41?5 : ida<=45?6 : ida<=49?7 : 8,
+      // 10 Faixas etárias oficiais (Anexo VI 2.3)
+      OIC07: ida => ida<=23?0 : ida<=25?1 : ida<=28?2 : ida<=30?3 : ida<=34?4 : ida<=38?5 : ida<=41?6 : ida<=45?7 : ida<=49?8 : 9,
+      // 5 Faixas etárias oficiais (Anexo VI 2.5)
+      OIC08: ida => ida<=29?0 : ida<=33?1 : ida<=38?2 : ida<=44?3 : 4,
+      MARCH: ida => ida<=19?0 : ida<=29?1 : ida<=39?2 : ida<=49?3 : 4 
     };
 
-    let currentGender = 'masculino';
-    let currentAgeGroup = '25_29';
-
-    /* Sincronização Slider e Input */
-    function setupTwoWayBinding(rangeId, inputId, callback) {
-      const range = document.getElementById(rangeId);
-      const input = document.getElementById(inputId);
-
-      range.addEventListener('input', () => {
-        input.value = range.value;
-        if (callback) callback();
-      });
-
-      input.addEventListener('input', () => {
-        let val = Number(input.value);
-        if (isNaN(val)) val = 0;
-        range.value = val;
-        if (callback) callback();
-      });
+    // OIC 06 Tabela 1 (com apoio dos joelhos) — regra de transição do Art. 109
+    function tabela1Transicao(idade) {
+      if (idade <= 29) return { S: 17, B: 26, MB: 35, E: 41 };
+      if (idade <= 40) return { S: 15, B: 25, MB: 34, E: 40 };
+      if (idade <= 44) return { S: 14, B: 19, MB: 28, E: 37 };
+      return { S: 10, B: 17, MB: 25, E: 30 };
     }
 
-    /* Cálculo de Pontuação Individual */
-    function evaluateSingleTest(value, ref) {
-      if (value < ref.min) {
-        const fraction = Math.max(0, value / ref.min);
-        const pts = fraction * 10;
-        return {
-          pontos: parseFloat(pts.toFixed(1)),
-          conceito: 'Insuficiente (I)',
-          apto: false,
-          color: 'text-rose-400'
-        };
+    const NORMA = 'NSCA 54-3/2026';
+
+    /* ---- limites.js (NSCA 54-3/2026) ---- */
+    /*
+     * Limites de entrada da calculadora (fonte única: calculadora pública, app e servidor).
+     * Módulo puro: sem DOM, rede ou armazenamento. Os limites são os mesmos dos CHECK de
+     * tacf_registros no banco; valor fora deles nunca é pontuado.
+     */
+
+    /** Limites por campo. `inteiro`: não aceita fração. */
+    const LIMITES_ENTRADA = {
+      idade:          { min: 18,  max: 75,   inteiro: true,  mensagem: 'Idade: informe de 18 a 75 anos.' },
+      estatura:       { min: 140, max: 220,  inteiro: false, mensagem: 'Estatura: informe de 140 a 220 cm.' },
+      cintura:        { min: 50,  max: 150,  inteiro: false, mensagem: 'Cintura: informe de 50 a 150 cm.' },
+      flexao:         { min: 0,   max: 150,  inteiro: true,  mensagem: 'Flexão: informe de 0 a 150 repetições.' },
+      abdominal:      { min: 0,   max: 150,  inteiro: true,  mensagem: 'Abdominal: informe de 0 a 150 repetições.' },
+      // 0 m continua significando "não preenchido" (ver validarEntrada).
+      corridaM:       { min: 1,   max: 5000, inteiro: true,  mensagem: 'Corrida: informe de 1 a 5000 metros.' },
+      // 600 s = 10:00; 7200 s = 2:00:00.
+      marchaSeg:      { min: 600, max: 7200, inteiro: true,  mensagem: 'Marcha: informe de 10:00 a 2:00:00.' },
+      fcRepouso:      { min: 30,  max: 220,  inteiro: true,  mensagem: 'FC de repouso: informe de 30 a 220 bpm.' },
+      // Campo "segundos" da marcha, conferido na leitura do formulário.
+      segundosMarcha: { min: 0,   max: 59,   inteiro: true,  mensagem: 'Segundos: informe de 0 a 59.' },
+    };
+
+    /**
+     * Mensagem de erro do valor de um campo, ou null se estiver dentro do limite.
+     * @param {keyof typeof LIMITES_ENTRADA} campo
+     * @param {number} valor
+     * @returns {string|null}
+     */
+    function erroCampo(campo, valor) {
+      const l = LIMITES_ENTRADA[campo];
+      if (!l) throw new Error(`Campo sem limite: ${campo}`);
+      const ok = Number.isFinite(valor) && valor >= l.min && valor <= l.max && (!l.inteiro || Number.isInteger(valor));
+      return ok ? null : l.mensagem;
+    }
+
+    /**
+     * Erros de limite da entrada normalizada, na ordem do formulário. Só confere os campos
+     * preenchidos (número finito): ausente/NaN fica para a checagem de completude. Na prova
+     * aeróbica, só a do modo escolhido, e 0 significa "não preenchido".
+     * @returns {{campo: string, mensagem: string}[]}
+     */
+    function validarEntrada(e) {
+      const campos = ['idade', 'estatura', 'cintura', 'flexao', 'abdominal',
+        e.aerobicoModo === 'marcha' ? 'marchaSeg' : 'corridaM'];
+      const erros = [];
+      for (const campo of campos) {
+        const v = e[campo];
+        if (typeof v !== 'number' || !Number.isFinite(v)) continue;
+        if ((campo === 'corridaM' || campo === 'marchaSeg') && v === 0) continue;
+        const mensagem = erroCampo(campo, v);
+        if (mensagem) erros.push({ campo, mensagem });
+      }
+      return erros;
+    }
+
+    /* ---- calculo-tacf.js (NSCA 54-3/2026) ---- */
+    /* Cálculo do TACF pela NSCA 54-3/2026. Módulo puro: sem DOM, rede ou armazenamento. */
+    function buscarPontoArrayAsc(arr, valor, col) {
+      if (valor < arr[0][0]) return 0;
+      if (valor >= arr[arr.length-1][0]) return arr[arr.length-1][1][col];
+      const exact = arr.find(r => r[0] === valor);
+      if (exact) return exact[1][col];
+      const above = arr.find(r => r[0] > valor);
+      const below = arr.slice().reverse().find(r => r[0] < valor);
+      const t = (valor - below[0]) / (above[0] - below[0]);
+      return below[1][col] + t * (above[1][col] - below[1][col]);
+    }
+
+    function buscarPontoObj(obj, valor, col) {
+      const keys = Object.keys(obj).map(Number).sort((a,b)=>a-b);
+      if (valor < keys[0]) return 0;
+      if (valor >= keys[keys.length-1]) return obj[keys[keys.length-1]][col];
+      return obj[valor] ? obj[valor][col] : 0;
+    }
+
+    /**
+     * Tabelas decrescentes (cintura, marcha): usa a linha tabelada mais próxima que seja >= valor,
+     * ou seja, nunca pontua acima do que a norma garante. Pior que a 1ª linha → 0.
+     */
+    function buscarPontoDegrauDesc(arr, valor, col) {
+      let linha = null;
+      for (const r of arr) { if (r[0] >= valor) linha = r; else break; }
+      return linha ? linha[1][col] : 0;
+    }
+
+    function sec2MMSS(s) { let m=Math.floor(s/60), sc=s%60; return String(m).padStart(2,'0')+':'+String(sc).padStart(2,'0'); }
+
+    function pontosFlexaoTransicao(flexao, idade) {
+      const t = tabela1Transicao(idade);
+      if (flexao < t.S) return 0;
+      if (flexao < t.B) return 2.0 + ((flexao - t.S) / (t.B - t.S)) * 2.0;
+      if (flexao < t.MB) return 4.0 + ((flexao - t.B) / (t.MB - t.B)) * 3.0;
+      if (flexao < t.E) return 7.0 + ((flexao - t.MB) / (t.E - t.MB)) * 2.0;
+      return 10.0;
+    }
+
+    /** Pontuação máxima de cada item (OIC). */
+    const MAXIMOS = { cintura: 30, flexao: 10, abdominal: 10, aerobico: 50 };
+
+    /**
+     * Pontos de um único item. Usa só o perfil (sexo, idade, estatura, transicaoFem, aerobicoModo)
+     * e o valor do próprio item — serve tanto ao resultado final quanto à prévia enquanto se digita.
+     * @param {'cintura'|'flexao'|'abdominal'|'aerobico'} item
+     */
+    function pontosItem(item, e) {
+      const { sexo, idade, estatura } = e;
+      const masc = sexo === 'M';
+      switch (item) {
+        case 'cintura':
+          return masc
+            ? buscarPontoDegrauDesc(OIC01, e.cintura, M_COLS.OIC01(estatura))
+            : buscarPontoDegrauDesc(OIC05, e.cintura, F_COLS.OIC05(estatura));
+        case 'flexao':
+          if (masc) return buscarPontoObj(OIC02, e.flexao, M_COLS.OIC02(idade));
+          return e.transicaoFem
+            ? pontosFlexaoTransicao(e.flexao, idade)
+            : buscarPontoObj(OIC06_SEM_JOELHO, e.flexao, F_COLS.OIC06(idade));
+        case 'abdominal':
+          return masc
+            ? buscarPontoObj(OIC03, e.abdominal, M_COLS.OIC03(idade))
+            : buscarPontoObj(OIC07, e.abdominal, F_COLS.OIC07(idade));
+        case 'aerobico':
+          if (e.aerobicoModo === 'corrida') {
+            return masc
+              ? buscarPontoArrayAsc(OIC04_ROWS, e.corridaM, M_COLS.OIC04(idade))
+              : buscarPontoArrayAsc(OIC08_ROWS, e.corridaM, F_COLS.OIC08(idade));
+          }
+          return masc
+            ? buscarPontoDegrauDesc(OIC04_MARCHA_ROWS, e.marchaSeg, M_COLS.MARCH(idade))
+            : buscarPontoDegrauDesc(OIC08_MARCHA_ROWS, e.marchaSeg, F_COLS.MARCH(idade));
+        default:
+          throw new Error(`Item desconhecido: ${item}`);
+      }
+    }
+
+    /** Menção pela regra da norma (Art. 36): não apto → I; apto → E ≥ 90, MB ≥ 70, B ≥ 40, senão S. */
+    function mencaoDe(grau, apto) {
+      if (!apto) return 'I';
+      if (grau >= 90.0) return 'E';
+      if (grau >= 70.0) return 'MB';
+      if (grau >= 40.0) return 'B';
+      return 'S';
+    }
+
+    /**
+     * @param {{sexo:'M'|'F', idade:number, estatura:number, transicaoFem:boolean,
+     *   cintura:number, flexao:number, abdominal:number,
+     *   aerobicoModo:'corrida'|'marcha', corridaM?:number, marchaSeg?:number}} e
+     * corridaM já arredondada a 10 m (ver normalizarEntrada).
+     */
+    function calcularTACF(e) {
+      e = { ...e, transicaoFem: !!e.transicaoFem && e.sexo === 'F' };
+      const cin = pontosItem('cintura', e);
+      const fle = pontosItem('flexao', e);
+      const abd = pontosItem('abdominal', e);
+      const aer = pontosItem('aerobico', e);
+
+      const grau = cin + fle + abd + aer;
+      // Critério de Aptidão oficial (Art. 30, 35 e 36): grau >= 20 E nenhum OIC com zero
+      const zeraOIC = (cin === 0 || fle === 0 || abd === 0 || aer === 0);
+      const apto = !zeraOIC && grau >= 20.0;
+
+      const mencao = mencaoDe(grau, apto);
+      let motivoInapto = null;
+      if (!apto) {
+        if (zeraOIC && grau >= 20) {
+          motivoInapto = '⚠️ Avaliado como Não Apto devido a desempenho inferior ao mínimo estabelecido (zero pontos) em um ou mais OIC, conforme Art. 30 e 33 da NSCA 54-3/2026.';
+        } else if (grau < 20) {
+          motivoInapto = '⚠️ Grau Final inferior a 20,0 pontos (Art. 36, inciso II).';
+        }
       }
 
-      if (value < ref.bom) {
-        const fraction = (value - ref.min) / (ref.bom - ref.min || 1);
-        const pts = 12 + fraction * 6;
-        return {
-          pontos: parseFloat(pts.toFixed(1)),
-          conceito: 'Regular / Satisfatório (S)',
-          apto: true,
-          color: 'text-yellow-400'
-        };
-      }
-
-      if (value < ref.muitoBom) {
-        const fraction = (value - ref.bom) / (ref.muitoBom - ref.bom || 1);
-        const pts = 18 + fraction * 7;
-        return {
-          pontos: parseFloat(pts.toFixed(1)),
-          conceito: 'Bom (B)',
-          apto: true,
-          color: 'text-blue-400'
-        };
-      }
-
-      if (value < ref.excelente) {
-        const fraction = (value - ref.muitoBom) / (ref.excelente - ref.muitoBom || 1);
-        const pts = 25 + fraction * 6.5;
-        return {
-          pontos: parseFloat(pts.toFixed(1)),
-          conceito: 'Muito Bom (MB)',
-          apto: true,
-          color: 'text-emerald-400'
-        };
-      }
+      let destaque = null;
+      if (apto && Math.round(grau * 10) === 1000) destaque = 'maximo';
+      else if (apto && grau >= 96.0) destaque = 'destaque96';
 
       return {
-        pontos: 33.3,
-        conceito: 'Excelente (E)',
-        apto: true,
-        color: 'text-amber-400'
+        norma: NORMA,
+        pontos: { cintura: cin, flexao: fle, abdominal: abd, aerobico: aer },
+        grau, apto, mencao, motivoInapto, destaque,
       };
     }
 
-    /* Calcular TACF */
-    function calcularTACF() {
-      const faixa = TABELA_TACF[currentGender][currentAgeGroup];
-      const valFlexao = parseInt(document.getElementById('input-flexao').value) || 0;
-      const valAbdominal = parseInt(document.getElementById('input-abdominal').value) || 0;
-      const valCorrida = parseInt(document.getElementById('input-corrida').value) || 0;
+    /** Arredondamento que a tela aplica antes do cálculo (corrida de 10 em 10 m, norma: campo CORRIDA). */
+    function normalizarEntrada(e) {
+      return {
+        ...e,
+        corridaM: e.aerobicoModo === 'corrida' ? Math.round((e.corridaM || 0) / 10) * 10 : undefined,
+        marchaSeg: e.aerobicoModo === 'marcha' ? e.marchaSeg : undefined,
+      };
+    }
 
-      const voltas = (valCorrida / 400).toFixed(1);
-      document.getElementById('corrida-voltas-hint').innerText = `Equivale a: ~${voltas} voltas de 400m`;
+    const MENCOES = {
+      E:  { rotulo: 'Excelente (E)',      cor: '#64B5F6' },
+      MB: { rotulo: 'Muito Bom (MB)',     cor: '#81C784' },
+      B:  { rotulo: 'Bom (B)',            cor: '#AED581' },
+      S:  { rotulo: 'Satisfatório (S)',   cor: '#FFD54F' },
+      I:  { rotulo: 'Insatisfatório (I)', cor: '#EF5350' },
+    };
 
-      const resFlexao = evaluateSingleTest(valFlexao, faixa.flexao);
-      const resAbdominal = evaluateSingleTest(valAbdominal, faixa.abdominal);
-      const resCorrida = evaluateSingleTest(valCorrida, faixa.corrida);
+    // Grau mínimo de cada menção (Art. 36): S a partir de 20 (APTO), B 40, MB 70, E 90.
+    const LIMIAR_MENCAO = [['S', 20], ['B', 40], ['MB', 70], ['E', 90]];
 
-      const grauFinal = parseFloat((resFlexao.pontos + resAbdominal.pontos + resCorrida.pontos).toFixed(1));
-      const estaApto = resFlexao.apto && resAbdominal.apto && resCorrida.apto;
+    /**
+     * Próxima menção do grau final e quantos pontos faltam, arredondado para cima a 0,1.
+     * null na menção máxima (E) ou quando o NÃO APTO vem de OIC zerado (mais pontos não resolvem).
+     * @param {{apto:boolean, grau:number, pontos:Record<string, number>}} r resultado de calcularTACF
+     */
+    function proximaMencao(r) {
+      if (!r.apto && Object.values(r.pontos).some(p => p === 0)) return null;
+      const proxima = LIMIAR_MENCAO.find(([, limiar]) => r.grau < limiar);
+      if (!proxima) return null;
+      const [mencao, limiar] = proxima;
+      // Centésimos inteiros antes de arredondar: evita que 15.4000001 vire 15.5.
+      const centesimos = Math.round((limiar - r.grau) * 100);
+      return { mencao, limiar, falta: Math.ceil(centesimos / 10) / 10 };
+    }
 
-      let mencaoGlobal = 'Insuficiente (I)';
-      let mencaoClasse = 'bg-rose-500/20 text-rose-300 border-rose-400/30';
-      if (!estaApto) {
-        mencaoGlobal = 'Inapto Técnico (Abaixo do Mínimo)';
-        mencaoClasse = 'bg-rose-500/20 text-rose-300 border-rose-400/30';
-      } else if (grauFinal >= 90) {
-        mencaoGlobal = 'Excelente (E)';
-        mencaoClasse = 'bg-amber-400/20 text-amber-300 border-amber-400/30';
-      } else if (grauFinal >= 70) {
-        mencaoGlobal = 'Muito Bom (MB)';
-        mencaoClasse = 'bg-emerald-500/20 text-emerald-300 border-emerald-400/30';
-      } else if (grauFinal >= 45) {
-        mencaoGlobal = 'Bom (B)';
-        mencaoClasse = 'bg-blue-500/20 text-blue-300 border-blue-400/30';
-      } else {
-        mencaoGlobal = 'Regular / Satisfatório (S)';
-        mencaoClasse = 'bg-yellow-500/20 text-yellow-300 border-yellow-400/30';
+    /* ---- metas.js (NSCA 54-3/2026) ---- */
+    /* Metas S/B/MB/E/Máx do Anexo IV por perfil. Módulo puro. */
+    /** Pontos mínimos de cada menção (S, B, MB, E, Máx) por pontuação máxima do item. */
+    const LIMIARES = { 10: [2, 4, 7, 9, 10], 30: [6, 12, 21, 27, 30], 50: [10, 20, 35, 45, 50] };
+
+    const FAIXAS = ['S', 'B', 'MB', 'E', 'MAX'];
+
+    /** Menção alcançada por um item isolado, ou null se abaixo do mínimo (S). */
+    function faixaItem(pontos, maxPts) {
+      const limiares = LIMIARES[maxPts];
+      let faixa = null;
+      limiares.forEach((lim, i) => { if (pontos >= lim) faixa = FAIXAS[i]; });
+      return faixa;
+    }
+
+    // Cada prova tem um sentido (≤ ou ≥), uma unidade e o formato do número; o texto completo
+    // (desktop) e o curto (celular, só o número) saem do mesmo valor.
+    const FORMATOS = {
+      cm:     { sentido: '≤', unidade: 'cm',  numero: v => v.toFixed(1) },
+      rep:    { sentido: '≥', unidade: 'rep', numero: v => String(v) },
+      metros: { sentido: '≥', unidade: 'm',   numero: v => String(v) },
+      tempo:  { sentido: '≤', unidade: 'min', numero: v => sec2MMSS(v) },
+    };
+
+    function textoCompleto(fmt, curto) {
+      if (curto === '-') return '-';
+      return `${fmt.sentido} ${curto}` + (fmt.unidade === 'min' ? '' : ` ${fmt.unidade}`);
+    }
+
+    // alvos: valor mínimo (≥) ou máximo (≤) de cada menção, em número; null se inalcançável.
+    function montarLinha(prova, nomeCurto, fmt, alvos) {
+      const linha = { prova, nomeCurto, sentido: fmt.sentido, unidade: fmt.unidade, alvos, curto: {} };
+      for (const k of FAIXAS) {
+        linha.curto[k] = alvos[k] === null ? '-' : fmt.numero(alvos[k]);
+        linha[k] = textoCompleto(fmt, linha.curto[k]);
       }
+      return linha;
+    }
 
-      document.getElementById('resultado-grau').innerText = grauFinal.toFixed(1);
-      const mencaoEl = document.getElementById('resultado-mencao');
-      mencaoEl.className = `inline-block mt-2 px-4 py-1 rounded-lg text-sm font-extrabold border font-militar ${mencaoClasse}`;
-      mencaoEl.innerText = `Conceito: ${mencaoGlobal}`;
+    function linhaMetas(data, isObj, isDesc, col, maxPts, prova, nomeCurto, fmt) {
+      const [tS, tB, tMB, tE, tMAX] = LIMIARES[maxPts];
+      const items = isObj ? Object.keys(data).map(Number).sort((a,b)=>a-b).map(k => [k, data[k]]) : data;
+      const alvo = t => {
+        const validos = items.filter(i => i[1][col] >= t).map(i => i[0]);
+        if (!validos.length) return null;
+        return isDesc ? Math.max(...validos) : Math.min(...validos);
+      };
+      return montarLinha(prova, nomeCurto, fmt, { S: alvo(tS), B: alvo(tB), MB: alvo(tMB), E: alvo(tE), MAX: alvo(tMAX) });
+    }
 
-      const badgeStatus = document.getElementById('badge-status');
-      if (estaApto) {
-        badgeStatus.className = 'px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 font-militar';
-        badgeStatus.innerText = 'APTO';
-      } else {
-        badgeStatus.className = 'px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-rose-500/20 text-rose-400 border border-rose-500/40 font-militar';
-        badgeStatus.innerText = 'INAPTO';
+    const { cm, rep, metros, tempo } = FORMATOS;
+
+    /**
+     * @returns {{prova:string, nomeCurto:string, sentido:'≤'|'≥', unidade:string,
+     *   S:string, B:string, MB:string, E:string, MAX:string,
+     *   curto:{S:string, B:string, MB:string, E:string, MAX:string},
+     *   alvos:{S:number|null, B:number|null, MB:number|null, E:number|null, MAX:number|null}}[]}
+     * S..MAX: texto completo da célula (ex.: '≤ 85.5 cm'); curto: só o número (ex.: '85.5') ou '-';
+     * alvos: o mesmo valor em número (marcha em segundos).
+     */
+    function metasTACF({ sexo, idade, estatura, transicaoFem }) {
+      if (sexo === 'M') {
+        return [
+          linhaMetas(OIC01, false, true, M_COLS.OIC01(estatura), 30, 'OIC 01 Cintura', 'Cintura', cm),
+          linhaMetas(OIC02, true, false, M_COLS.OIC02(idade), 10, 'OIC 02 Flexão', 'Flexão', rep),
+          linhaMetas(OIC03, true, false, M_COLS.OIC03(idade), 10, 'OIC 03 Abdominal', 'Abdominal', rep),
+          linhaMetas(OIC04_ROWS, false, false, M_COLS.OIC04(idade), 50, 'OIC 04 Corrida 12min', 'Corrida 12 min', metros),
+          linhaMetas(OIC04_MARCHA_ROWS, false, true, M_COLS.MARCH(idade), 50, 'OIC 04 Marcha 4.8km', 'Marcha 4,8 km', tempo),
+        ];
       }
-
-      document.getElementById('detalhe-flexao-reps').innerText = `${valFlexao} reps (Mín: ${faixa.flexao.min})`;
-      document.getElementById('detalhe-flexao-pontos').innerText = `${resFlexao.pontos} pts`;
-      document.getElementById('detalhe-flexao-conceito').innerText = resFlexao.conceito;
-      document.getElementById('detalhe-flexao-conceito').className = `text-[10px] font-bold ${resFlexao.color}`;
-
-      document.getElementById('detalhe-abdominal-reps').innerText = `${valAbdominal} reps (Mín: ${faixa.abdominal.min})`;
-      document.getElementById('detalhe-abdominal-pontos').innerText = `${resAbdominal.pontos} pts`;
-      document.getElementById('detalhe-abdominal-conceito').innerText = resAbdominal.conceito;
-      document.getElementById('detalhe-abdominal-conceito').className = `text-[10px] font-bold ${resAbdominal.color}`;
-
-      document.getElementById('detalhe-corrida-metros').innerText = `${valCorrida} m (~${voltas} voltas | Mín: ${faixa.corrida.min}m)`;
-      document.getElementById('detalhe-corrida-pontos').innerText = `${resCorrida.pontos} pts`;
-      document.getElementById('detalhe-corrida-conceito').innerText = resCorrida.conceito;
-      document.getElementById('detalhe-corrida-conceito').className = `text-[10px] font-bold ${resCorrida.color}`;
-
-      const narrativoEl = document.getElementById('parecer-narrativo');
-      if (!estaApto) {
-        let erros = [];
-        if (!resFlexao.apto) erros.push(`Flexão (${valFlexao}/${faixa.flexao.min})`);
-        if (!resAbdominal.apto) erros.push(`Abdominal (${valAbdominal}/${faixa.abdominal.min})`);
-        if (!resCorrida.apto) erros.push(`Corrida (${valCorrida}m/${faixa.corrida.min}m)`);
-        narrativoEl.className = 'p-3.5 rounded-xl bg-rose-500/15 border border-rose-500/30 text-xs text-rose-200 leading-relaxed';
-        narrativoEl.innerHTML = `<strong>Atenção Militar:</strong> Desempenho abaixo do mínimo eliminatório em: ${erros.join(', ')}. Conforme as normas da FAB, é necessário atingir o índice mínimo em todos os três testes para obter aprovação.`;
-      } else if (grauFinal >= 90) {
-        narrativoEl.className = 'p-3.5 rounded-xl bg-amber-400/15 border border-amber-400/30 text-xs text-amber-200 leading-relaxed';
-        narrativoEl.innerHTML = `<strong>Padrão de Excelência GAP-CO!</strong> Parabéns pelo excelente condicionamento físico demonstrado. Nível operacional de elite.`;
+      let flexao;
+      if (transicaoFem) {
+        const t = tabela1Transicao(idade);
+        flexao = montarLinha('OIC 06 Flexão (c/ Joelhos)', 'Flexão c/ joelhos', rep,
+          { S: t.S, B: t.B, MB: t.MB, E: t.E, MAX: t.E });
       } else {
-        narrativoEl.className = 'p-3.5 rounded-xl bg-blue-500/15 border border-blue-400/30 text-xs text-blue-200 leading-relaxed';
-        narrativoEl.innerHTML = `<strong>Condicionamento Aprovado.</strong> O militar cumpriu todas as metas satisfatórias do TACF. Mantenha os treinos regulares para evoluir para Muito Bom ou Excelente!`;
+        flexao = linhaMetas(OIC06_SEM_JOELHO, true, false, F_COLS.OIC06(idade), 10, 'OIC 06 Flexão (s/ Joelhos)', 'Flexão', rep);
       }
+      return [
+        linhaMetas(OIC05, false, true, F_COLS.OIC05(estatura), 30, 'OIC 05 Cintura', 'Cintura', cm),
+        flexao,
+        linhaMetas(OIC07, true, false, F_COLS.OIC07(idade), 10, 'OIC 07 Abdominal', 'Abdominal', rep),
+        linhaMetas(OIC08_ROWS, false, false, F_COLS.OIC08(idade), 50, 'OIC 08 Corrida 12min', 'Corrida 12 min', metros),
+        linhaMetas(OIC08_MARCHA_ROWS, false, true, F_COLS.MARCH(idade), 50, 'OIC 08 Marcha 4.8km', 'Marcha 4,8 km', tempo),
+      ];
+    }
 
-      atualizarEspelhoImpressao({
-        grauFinal, mencaoGlobal, estaApto,
-        valFlexao, resFlexao,
-        valAbdominal, resAbdominal,
-        valCorrida, resCorrida
+    // Linha da tabela de metas e valor digitado correspondentes a cada item.
+    function linhaEValor(item, e, metas) {
+      switch (item) {
+        case 'cintura': return [metas[0], e.cintura];
+        case 'flexao': return [metas[1], e.flexao];
+        case 'abdominal': return [metas[2], e.abdominal];
+        case 'aerobico': return e.aerobicoModo === 'corrida' ? [metas[3], e.corridaM] : [metas[4], e.marchaSeg];
+        default: throw new Error(`Item desconhecido: ${item}`);
+      }
+    }
+
+    /**
+     * Próxima menção do item e quanto falta para ela, a partir das mesmas metas da tabela.
+     * @returns {{faixa:string, falta:number, sentido:'≤'|'≥', unidade:string, minimo:boolean} | null}
+     * falta na unidade da prova (marcha em segundos); minimo=true quando o item está zerado
+     * (a próxima faixa é o mínimo para APTO); null quando já está no máximo.
+     */
+    function proximaFaixa(item, e) {
+      const atual = faixaItem(pontosItem(item, e), MAXIMOS[item]);
+      if (atual === 'MAX') return null;
+      const [linha, valor] = linhaEValor(item, e, metasTACF(e));
+      for (let i = atual ? FAIXAS.indexOf(atual) + 1 : 0; i < FAIXAS.length; i++) {
+        const alvo = linha.alvos[FAIXAS[i]];
+        if (alvo === null) continue;
+        const falta = linha.sentido === '≥' ? alvo - valor : valor - alvo;
+        if (falta <= 0) continue;
+        return { faixa: FAIXAS[i], falta, sentido: linha.sentido, unidade: linha.unidade, minimo: atual === null };
+      }
+      return null;
+    }
+
+    // Grau mínimo de cada alvo (Art. 36): Apto (S) 20, B 40, MB 70, E 90.
+    const ALVOS_AEROBICO = [['S', 20], ['B', 40], ['MB', 70], ['E', 90]];
+
+    /**
+     * TACF parcial (prova aeróbica em outro dia, art. 20 III): quanto a corrida ou a marcha precisa para
+     * cada menção, dado o que já foi feito. Varre os valores possíveis com o próprio pontosItem, então a
+     * meta é exatamente a da tabela (inclusive a interpolação da corrida).
+     * @param {{sexo:'M'|'F', idade:number, estatura:number, transicaoFem:boolean,
+     *   cintura:number, flexao:number, abdominal:number}} e
+     * @returns {{zerado:true, soma:number} | {zerado:false, soma:number,
+     *   alvos:{mencao:'S'|'B'|'MB'|'E', corridaM:number|null, marchaSeg:number|null}[]}}
+     * corridaM: menor distância (múltiplo de 10 m); marchaSeg: maior tempo (s); null = inalcançável.
+     * zerado: cintura, flexão ou abdominal com zero ponto → Não Apto qualquer que seja a prova aeróbica (Art. 30/33).
+     */
+    function metasAerobico(e) {
+      const p = { ...e, transicaoFem: !!e.transicaoFem && e.sexo === 'F' };
+      const cin = pontosItem('cintura', p);
+      const fle = pontosItem('flexao', p);
+      const abd = pontosItem('abdominal', p);
+      // Mesma ordem de soma de calcularTACF (cin + fle + abd + aer): o arredondamento em ponto flutuante coincide.
+      const soma = cin + fle + abd;
+      if (cin === 0 || fle === 0 || abd === 0) return { zerado: true, soma };
+      const alcanca = (aer, limiar) => aer > 0 && soma + aer >= limiar;
+      const { corridaM: limCorrida, marchaSeg: limMarcha } = LIMITES_ENTRADA;
+      const alvos = ALVOS_AEROBICO.map(([mencao, limiar]) => {
+        let corridaM = null;
+        for (let m = 10; m <= limCorrida.max; m += 10) {
+          if (alcanca(pontosItem('aerobico', { ...p, aerobicoModo: 'corrida', corridaM: m }), limiar)) { corridaM = m; break; }
+        }
+        let marchaSeg = null;
+        for (let s = limMarcha.max; s >= limMarcha.min; s--) {
+          if (alcanca(pontosItem('aerobico', { ...p, aerobicoModo: 'marcha', marchaSeg: s }), limiar)) { marchaSeg = s; break; }
+        }
+        return { mencao, corridaM, marchaSeg };
+      });
+      return { zerado: false, soma, alvos };
+    }
+
+    /* ---- textos.js (NSCA 54-3/2026) ---- */
+    /* Textos derivados do cálculo, usados pela calculadora pública e pelo App TACF. Módulo puro. */
+    const ROTULO_FAIXA = { S: 'Satisfatório (S)', B: 'Bom (B)', MB: 'Muito Bom (MB)', E: 'Excelente (E)', MAX: 'Máximo' };
+    const NOME_MENCAO = { S: 'Satisfatório', B: 'Bom', MB: 'Muito Bom', E: 'Excelente' };
+
+    // Ex.: 'falta 1 rep para Bom (B)', 'reduzir 0.8 cm para o Máximo', 'reduzir 3:00 para ... — mínimo para APTO'.
+    function textoFalta(p) {
+      if (!p) return '';
+      const alvo = p.faixa === 'MAX' ? 'o Máximo' : ROTULO_FAIXA[p.faixa];
+      let quanto;
+      if (p.unidade === 'min') quanto = `${Math.floor(p.falta / 60)}:${String(p.falta % 60).padStart(2, '0')}`;
+      else if (p.unidade === 'cm') quanto = `${p.falta.toFixed(1)} cm`;
+      else quanto = `${p.falta} ${p.unidade}`;
+      const verbo = p.sentido === '≤' ? 'reduzir' : (p.falta === 1 ? 'falta' : 'faltam');
+      return `${verbo} ${quanto} para ${alvo}` + (p.minimo ? ' — mínimo para APTO' : '');
+    }
+
+    /** Prévia de um item enquanto se digita: pontos, máximo e faixa (null = abaixo do mínimo). */
+    function textoPrevia(item, pontos) {
+      const faixa = faixaItem(pontos, MAXIMOS[item]);
+      return {
+        texto: `→ ${pontos.toFixed(1)} de ${MAXIMOS[item]} pts · ` + (faixa ? ROTULO_FAIXA[faixa] : 'abaixo do mínimo (NÃO APTO)'),
+        faixa,
+      };
+    }
+
+    // A FC de repouso não pontua; a única regra da norma é o encaminhamento médico acima de 100 bpm (Art. 24).
+    function avaliarFC(fc) {
+      if (!Number.isFinite(fc)) return null;
+      return fc > 100
+        ? { alerta: true, texto: `→ ${fc} bpm · acima de 100: encaminhar ao médico antes dos testes (Art. 24)` }
+        : { alerta: false, texto: `→ ${fc} bpm · dentro do limite para os testes (≤ 100 bpm) · não pontua` };
+    }
+
+    /** 'Faltam 15.4 pontos para Muito Bom (70).' — em português, abaixo de 2 o substantivo fica no singular. */
+    function textoProximaMencao(p) {
+      if (!p) return '';
+      const singular = p.falta < 2;
+      return `${singular ? 'Falta' : 'Faltam'} ${p.falta.toFixed(1)} ${singular ? 'ponto' : 'pontos'} para ${NOME_MENCAO[p.mencao]} (${p.limiar}).`;
+    }
+
+    /* =====================================================================
+       INTERFACE DO SIMULADOR — TACF 2025 · GAP-CO
+       ===================================================================== */
+    const $ = id => document.getElementById(id);
+    const fmt1 = n => n.toFixed(1).replace('.', ',');
+
+    let currentGender = 'M';
+    let aerobicoModo = 'corrida';
+
+    const ITENS = [
+      { chave: 'cintura',   nome: 'Circunferência da Cintura', cor: 'text-violet-300' },
+      { chave: 'flexao',    nome: 'Flexão de Braço',           cor: 'text-amber-400' },
+      { chave: 'abdominal', nome: 'Abdominal (1 min)',         cor: 'text-blue-400' },
+      { chave: 'aerobico',  nome: 'Prova Aeróbica',            cor: 'text-emerald-400' },
+    ];
+    const COR_FAIXA = { S: 'text-yellow-400', B: 'text-blue-400', MB: 'text-emerald-400', E: 'text-amber-400', MAX: 'text-amber-300' };
+    const CLASSE_MENCAO = {
+      E:  'bg-amber-400/20 text-amber-300 border-amber-400/30',
+      MB: 'bg-emerald-500/20 text-emerald-300 border-emerald-400/30',
+      B:  'bg-blue-500/20 text-blue-300 border-blue-400/30',
+      S:  'bg-yellow-500/20 text-yellow-300 border-yellow-400/30',
+      I:  'bg-rose-500/20 text-rose-300 border-rose-400/30',
+    };
+
+    function lerNumero(id) {
+      const v = parseFloat(String($(id).value).replace(',', '.'));
+      return Number.isFinite(v) ? v : 0;
+    }
+
+    function lerEntrada() {
+      return normalizarEntrada({
+        sexo: currentGender,
+        idade: Math.round(lerNumero('input-idade')),
+        estatura: lerNumero('input-estatura'),
+        transicaoFem: currentGender === 'F' && $('chk-transicao').checked,
+        cintura: lerNumero('input-cintura'),
+        flexao: Math.round(lerNumero('input-flexao')),
+        abdominal: Math.round(lerNumero('input-abdominal')),
+        aerobicoModo,
+        corridaM: lerNumero('input-corrida'),
+        marchaSeg: Math.round(lerNumero('input-marcha-min')) * 60 + Math.round(lerNumero('input-marcha-seg')),
       });
     }
 
-    function atualizarBadgesMinimos() {
-      const faixa = TABELA_TACF[currentGender][currentAgeGroup];
-      document.getElementById('min-flexao-badge').innerText = `Mín: ${faixa.flexao.min} reps`;
-      document.getElementById('min-abdominal-badge').innerText = `Mín: ${faixa.abdominal.min} reps`;
-      document.getElementById('min-corrida-badge').innerText = `Mín: ${faixa.corrida.min} m`;
+    function valorTexto(chave, e) {
+      if (chave === 'cintura') return `${fmt1(e.cintura)} cm`;
+      if (chave === 'flexao') return `${e.flexao} reps` + (e.transicaoFem ? ' (c/ joelhos)' : '');
+      if (chave === 'abdominal') return `${e.abdominal} reps`;
+      return e.aerobicoModo === 'corrida' ? `${e.corridaM} m (corrida 12 min)` : `${sec2MMSS(e.marchaSeg)} (marcha 4,8 km)`;
     }
 
-    function atualizarEspelhoImpressao(d) {
-      const hoje = new Date().toLocaleDateString('pt-BR');
-      document.getElementById('print-data').innerText = `Data: ${hoje}`;
-      document.getElementById('print-militar-posto').innerText = document.getElementById('militar-posto').value;
-      document.getElementById('print-militar-nome').innerText = document.getElementById('militar-nome').value || 'Não informado';
-      document.getElementById('print-militar-om').innerText = document.getElementById('militar-om').value || 'GAP-CO';
-      document.getElementById('print-militar-saram').innerText = document.getElementById('militar-saram').value || 'Não informado';
-      document.getElementById('print-militar-genero').innerText = currentGender === 'masculino' ? 'Masculino' : 'Feminino';
-      document.getElementById('print-militar-faixa').innerText = NOMES_FAIXAS[currentAgeGroup];
-
-      document.getElementById('print-flexao-marca').innerText = `${d.valFlexao} repetições`;
-      document.getElementById('print-flexao-pts').innerText = `${d.resFlexao.pontos} pts`;
-      document.getElementById('print-flexao-conc').innerText = d.resFlexao.conceito;
-      document.getElementById('print-flexao-parecer').innerText = d.resFlexao.apto ? 'APTO' : 'INAPTO';
-
-      document.getElementById('print-abdominal-marca').innerText = `${d.valAbdominal} repetições`;
-      document.getElementById('print-abdominal-pts').innerText = `${d.resAbdominal.pontos} pts`;
-      document.getElementById('print-abdominal-conc').innerText = d.resAbdominal.conceito;
-      document.getElementById('print-abdominal-parecer').innerText = d.resAbdominal.apto ? 'APTO' : 'INAPTO';
-
-      document.getElementById('print-corrida-marca').innerText = `${d.valCorrida} metros`;
-      document.getElementById('print-corrida-pts').innerText = `${d.resCorrida.pontos} pts`;
-      document.getElementById('print-corrida-conc').innerText = d.resCorrida.conceito;
-      document.getElementById('print-corrida-parecer').innerText = d.resCorrida.apto ? 'APTO' : 'INAPTO';
-
-      document.getElementById('print-grau-final').innerText = d.grauFinal;
-      document.getElementById('print-mencao-global').innerText = d.mencaoGlobal;
-      document.getElementById('print-parecer-final').innerText = d.estaApto ? 'APTO' : 'INAPTO';
+    function rotuloFaixa(pontos, chave) {
+      const faixa = faixaItem(pontos, MAXIMOS[chave]);
+      return faixa ? { texto: ROTULO_FAIXA[faixa], cor: COR_FAIXA[faixa] } : { texto: 'Abaixo do mínimo', cor: 'text-rose-400' };
     }
 
-    /* Renderizar Tabela de Índices */
-    function renderizarTabelaIndices(genero) {
-      const tbody = document.getElementById('tabela-corpo-indices');
-      tbody.innerHTML = '';
-      const faixas = TABELA_TACF[genero];
+    function calcularTACFTela() {
+      const e = lerEntrada();
 
-      for (const [key, val] of Object.entries(faixas)) {
-        const trFlex = document.createElement('tr');
-        trFlex.className = 'hover:bg-slate-800/40 transition-colors';
-        trFlex.innerHTML = `
-          <td class="px-4 py-3 font-semibold text-white bg-slate-950/40">
-            <div class="font-bold font-militar">${NOMES_FAIXAS[key]}</div>
-            <div class="text-[10px] text-amber-400">Flexão de Braço</div>
-          </td>
-          <td class="px-4 py-3 text-center font-mono font-bold text-amber-300">&ge; ${val.flexao.min}</td>
-          <td class="px-4 py-3 text-center font-mono text-slate-300">${val.flexao.regular} - ${val.flexao.bom - 1}</td>
-          <td class="px-4 py-3 text-center font-mono text-blue-300">${val.flexao.bom} - ${val.flexao.muitoBom - 1}</td>
-          <td class="px-4 py-3 text-center font-mono text-emerald-300">${val.flexao.muitoBom} - ${val.flexao.excelente - 1}</td>
-          <td class="px-4 py-3 text-center font-mono font-bold text-amber-400">&ge; ${val.flexao.excelente}</td>
-        `;
-        tbody.appendChild(trFlex);
+      // Validação do perfil (idade e estatura definem as colunas das tabelas)
+      const errosPerfil = validarEntrada(e).filter(x => x.campo === 'idade' || x.campo === 'estatura');
+      $('perfil-erro').classList.toggle('hidden', errosPerfil.length === 0);
+      $('perfil-erro').textContent = errosPerfil.map(x => x.mensagem).join(' ');
 
-        const trAbd = document.createElement('tr');
-        trAbd.className = 'hover:bg-slate-800/40 transition-colors';
-        trAbd.innerHTML = `
-          <td class="px-4 py-2 font-semibold text-slate-400 bg-slate-950/40">
-            <div class="text-[10px] text-blue-400">Abdominal (1 min)</div>
-          </td>
-          <td class="px-4 py-2 text-center font-mono font-bold text-amber-300">&ge; ${val.abdominal.min}</td>
-          <td class="px-4 py-2 text-center font-mono text-slate-300">${val.abdominal.regular} - ${val.abdominal.bom - 1}</td>
-          <td class="px-4 py-2 text-center font-mono text-blue-300">${val.abdominal.bom} - ${val.abdominal.muitoBom - 1}</td>
-          <td class="px-4 py-2 text-center font-mono text-emerald-300">${val.abdominal.muitoBom} - ${val.abdominal.excelente - 1}</td>
-          <td class="px-4 py-2 text-center font-mono font-bold text-amber-400">&ge; ${val.abdominal.excelente}</td>
-        `;
-        tbody.appendChild(trAbd);
+      const voltas = (e.corridaM / 400).toFixed(1).replace('.', ',');
+      $('corrida-voltas-hint').innerText = `≈ ${voltas} voltas de 400 m`;
 
-        const trCor = document.createElement('tr');
-        trCor.className = 'hover:bg-slate-800/40 transition-colors border-b-2 border-slate-700/60';
-        trCor.innerHTML = `
-          <td class="px-4 py-2 font-semibold text-slate-400 bg-slate-950/40">
-            <div class="text-[10px] text-emerald-400">Corrida (12 min)</div>
-          </td>
-          <td class="px-4 py-2 text-center font-mono font-bold text-amber-300">&ge; ${val.corrida.min} m</td>
-          <td class="px-4 py-2 text-center font-mono text-slate-300">${val.corrida.regular} - ${val.corrida.bom - 10} m</td>
-          <td class="px-4 py-2 text-center font-mono text-blue-300">${val.corrida.bom} - ${val.corrida.muitoBom - 10} m</td>
-          <td class="px-4 py-2 text-center font-mono text-emerald-300">${val.corrida.muitoBom} - ${val.corrida.excelente - 10} m</td>
-          <td class="px-4 py-2 text-center font-mono font-bold text-amber-400">&ge; ${val.corrida.excelente} m</td>
-        `;
-        tbody.appendChild(trCor);
+      const r = calcularTACF(e);
+      const metas = metasTACF(e);
+
+      // Badges com o mínimo (S) de cada OIC
+      $('meta-cintura-badge').innerText = `S: ${metas[0].S}`;
+      $('meta-flexao-badge').innerText = `S: ${metas[1].S}`;
+      $('meta-abdominal-badge').innerText = `S: ${metas[2].S}`;
+      $('meta-aerobico-badge').innerText = `S: ${aerobicoModo === 'corrida' ? metas[3].S : metas[4].S}`;
+
+      // Prévias abaixo de cada campo
+      for (const { chave } of ITENS) {
+        const pts = r.pontos[chave];
+        const f = rotuloFaixa(pts, chave);
+        const falta = textoFalta(proximaFaixa(chave, e));
+        const el = $('previa-' + chave);
+        el.innerHTML = `→ <span class="${f.cor} font-bold">${fmt1(pts)} de ${MAXIMOS[chave]} pts · ${f.texto}</span>` + (falta ? ` · <span class="text-slate-400">${falta}</span>` : '');
       }
+
+      // Grau, menção, status
+      $('resultado-grau').innerText = fmt1(r.grau);
+      const mencaoEl = $('resultado-mencao');
+      mencaoEl.className = `inline-block mt-2 px-4 py-1 rounded-lg text-sm font-extrabold border font-militar ${CLASSE_MENCAO[r.mencao]}`;
+      mencaoEl.innerText = `Menção: ${MENCOES[r.mencao].rotulo}`;
+      $('resultado-proxima').innerText = textoProximaMencao(proximaMencao(r)).replace(/(\d)\.(\d)/g, '$1,$2');
+
+      const badge = $('badge-status');
+      badge.className = 'px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider font-militar border ' +
+        (r.apto ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40' : 'bg-rose-500/20 text-rose-400 border-rose-500/40');
+      badge.innerText = r.apto ? 'APTO' : 'NÃO APTO';
+
+      // Cards por OIC
+      $('lista-itens').innerHTML = ITENS.map(({ chave, nome, cor }) => {
+        const pts = r.pontos[chave];
+        const f = rotuloFaixa(pts, chave);
+        return `
+          <div class="bg-slate-950/70 p-3 rounded-xl border ${pts === 0 ? 'border-rose-500/40' : 'border-slate-800/80'} flex items-center justify-between gap-3">
+            <div class="min-w-0">
+              <div class="text-xs font-bold text-slate-200">${nome}</div>
+              <div class="text-[11px] text-slate-400 font-mono truncate">${valorTexto(chave, e)}</div>
+            </div>
+            <div class="text-right shrink-0">
+              <div class="text-xs font-black ${cor} font-mono">${fmt1(pts)} / ${MAXIMOS[chave]} pts</div>
+              <div class="text-[10px] font-bold ${f.cor}">${f.texto}</div>
+            </div>
+          </div>`;
+      }).join('');
+
+      // Parecer narrativo
+      const narr = $('parecer-narrativo');
+      if (!r.apto) {
+        const zerados = ITENS.filter(i => r.pontos[i.chave] === 0).map(i => i.nome);
+        narr.className = 'p-3.5 rounded-xl bg-rose-500/15 border border-rose-500/30 text-xs text-rose-200 leading-relaxed';
+        narr.innerHTML = `<strong>Não Apto.</strong> ` +
+          (zerados.length ? `Zero ponto em: ${zerados.join(', ')}. ` : '') +
+          `Para APTO é preciso pontuar em todos os OIC e somar Grau Final ≥ 20 (NSCA 54-3/2026, Art. 30, 33 e 36).`;
+      } else if (r.destaque === 'maximo') {
+        narr.className = 'p-3.5 rounded-xl bg-amber-400/15 border border-amber-400/30 text-xs text-amber-200 leading-relaxed';
+        narr.innerHTML = `<strong>Nota Máxima!</strong> Grau 100 — elegível ao Diploma de Mérito de Condicionamento Físico (Art. 76).`;
+      } else if (r.destaque === 'destaque96') {
+        narr.className = 'p-3.5 rounded-xl bg-amber-400/15 border border-amber-400/30 text-xs text-amber-200 leading-relaxed';
+        narr.innerHTML = `<strong>Destaque Operacional!</strong> Grau ≥ 96 (Art. 110). Padrão de excelência GAP-CO.`;
+      } else {
+        narr.className = 'p-3.5 rounded-xl bg-blue-500/15 border border-blue-400/30 text-xs text-blue-200 leading-relaxed';
+        narr.innerHTML = `<strong>Condicionamento Aprovado.</strong> Todos os OIC pontuados e Grau Final ≥ 20. Mantenha os treinos para evoluir de menção.`;
+      }
+
+      // Barra fixa (celular/tablet)
+      $('barra-grau').innerText = fmt1(r.grau);
+      $('barra-mencao').innerText = MENCOES[r.mencao].rotulo;
+      $('barra-status').className = 'px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider font-militar border ' +
+        (r.apto ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40' : 'bg-rose-500/20 text-rose-400 border-rose-500/40');
+      $('barra-status').innerText = r.apto ? 'APTO' : 'NÃO APTO';
+
+      renderizarMetas(e, metas);
+      atualizarEspelhoImpressao(e, r);
+      return { e, r };
+    }
+
+    function renderizarMetas(e, metas) {
+      const sexo = e.sexo === 'M' ? 'Masculino' : 'Feminino';
+      $('metas-perfil').innerText = `Perfil: ${sexo} · ${e.idade} anos · ${e.estatura} cm` + (e.transicaoFem ? ' · flexão com apoio dos joelhos (Art. 109)' : '');
+      const cores = ['text-violet-300', 'text-amber-400', 'text-blue-400', 'text-emerald-400', 'text-emerald-400'];
+      $('metas-corpo').innerHTML = metas.map((l, i) => {
+        const ativa = (i === 3 && aerobicoModo === 'corrida') || (i === 4 && aerobicoModo === 'marcha') || i < 3;
+        return `
+          <tr class="hover:bg-slate-800/40 transition-colors ${ativa ? '' : 'opacity-50'}">
+            <td class="px-4 py-3 font-semibold bg-slate-950/40">
+              <div class="font-bold text-white font-militar">${l.nomeCurto}</div>
+              <div class="text-[10px] ${cores[i]}">${l.prova}</div>
+            </td>
+            <td class="px-3 lg:px-4 py-3 text-center font-mono text-yellow-300 whitespace-nowrap">${l.S}</td>
+            <td class="px-3 lg:px-4 py-3 text-center font-mono text-blue-300 whitespace-nowrap">${l.B}</td>
+            <td class="px-3 lg:px-4 py-3 text-center font-mono text-emerald-300 whitespace-nowrap">${l.MB}</td>
+            <td class="px-3 lg:px-4 py-3 text-center font-mono text-amber-300 whitespace-nowrap">${l.E}</td>
+            <td class="px-3 lg:px-4 py-3 text-center font-mono font-bold text-amber-400 whitespace-nowrap">${l.MAX}</td>
+          </tr>`;
+      }).join('');
+
+      // Versão em cartões para celular
+      const faixas = [['S','Satisfatório','text-yellow-300'],['B','Bom','text-blue-300'],['MB','Muito Bom','text-emerald-300'],['E','Excelente','text-amber-300'],['MAX','Máximo','text-amber-400']];
+      $('metas-cards').innerHTML = metas.map((l, i) => {
+        const ativa = i < 3 || (i === 3 && aerobicoModo === 'corrida') || (i === 4 && aerobicoModo === 'marcha');
+        return `
+          <div class="glass-panel rounded-2xl p-4 border border-slate-700/80 ${ativa ? '' : 'opacity-50'}">
+            <div class="flex items-baseline justify-between gap-2 mb-2">
+              <span class="font-bold text-white font-militar">${l.nomeCurto}</span>
+              <span class="text-[10px] ${cores[i]}">${l.prova}</span>
+            </div>
+            <div class="grid grid-cols-5 gap-1 text-center">
+              ${faixas.map(([k, nome, cor]) => `
+                <div class="rounded-lg bg-slate-950/70 border border-slate-800 px-1 py-1.5">
+                  <div class="text-[9px] font-bold uppercase text-slate-400 leading-tight">${k === 'MAX' ? 'Máx' : k}</div>
+                  <div class="text-[11px] font-mono font-bold ${cor} leading-tight mt-0.5">${l.curto[k]}</div>
+                </div>`).join('')}
+            </div>
+            <div class="text-[10px] text-slate-500 mt-1.5">${l.sentido === '≤' ? 'Valor máximo' : 'Valor mínimo'} para cada menção (${l.unidade})</div>
+          </div>`;
+      }).join('');
+    }
+
+    function atualizarEspelhoImpressao(e, r) {
+      $('print-data').innerText = `Data: ${new Date().toLocaleDateString('pt-BR')}`;
+      $('print-militar-posto').innerText = $('militar-posto').value;
+      $('print-militar-nome').innerText = $('militar-nome').value || 'Não informado';
+      $('print-militar-om').innerText = $('militar-om').value || 'GAP-CO';
+      $('print-militar-saram').innerText = $('militar-saram').value || 'Não informado';
+      $('print-militar-genero').innerText = e.sexo === 'M' ? 'Masculino' : 'Feminino';
+      $('print-militar-perfil').innerText = `${e.idade} anos · ${e.estatura} cm`;
+      $('print-itens').innerHTML = ITENS.map(({ chave, nome }, i) => {
+        const pts = r.pontos[chave];
+        const f = rotuloFaixa(pts, chave);
+        return `<tr>
+          <td class="p-2 border border-black text-left font-semibold">${i + 1}. ${nome}</td>
+          <td class="p-2 border border-black">${valorTexto(chave, e)}</td>
+          <td class="p-2 border border-black">${fmt1(pts)} / ${MAXIMOS[chave]}</td>
+          <td class="p-2 border border-black">${f.texto}</td>
+          <td class="p-2 border border-black font-bold">${pts > 0 ? 'PONTUOU' : 'ZERO'}</td>
+        </tr>`;
+      }).join('');
+      $('print-grau-final').innerText = fmt1(r.grau);
+      $('print-mencao-global').innerText = MENCOES[r.mencao].rotulo;
+      $('print-parecer-final').innerText = r.apto ? 'APTO' : 'NÃO APTO';
+    }
+
+    function setupTwoWayBinding(rangeId, inputId) {
+      const range = $(rangeId), input = $(inputId);
+      range.addEventListener('input', () => { input.value = range.value; calcularTACFTela(); });
+      input.addEventListener('input', () => { range.value = input.value; calcularTACFTela(); });
+    }
+
+    function setSexo(sexo) {
+      currentGender = sexo;
+      const ativoM = 'py-2.5 px-2 rounded-lg border text-sm font-bold transition-all bg-blue-600 text-white border-blue-400 shadow-lg';
+      const ativoF = 'py-2.5 px-2 rounded-lg border text-sm font-bold transition-all bg-pink-600 text-white border-pink-400 shadow-lg';
+      const inativo = 'py-2.5 px-2 rounded-lg border text-sm font-bold transition-all bg-slate-900 text-slate-300 border-slate-700 hover:bg-slate-800';
+      $('btn-sex-m').className = sexo === 'M' ? ativoM : inativo;
+      $('btn-sex-f').className = sexo === 'F' ? ativoF : inativo;
+      $('box-transicao').classList.toggle('hidden', sexo !== 'F');
+      calcularTACFTela();
+    }
+
+    function setAerobico(modo) {
+      aerobicoModo = modo;
+      const ativo = 'px-3 py-1.5 rounded-md text-xs font-black bg-emerald-500 text-slate-950 font-militar uppercase';
+      const inativo = 'px-3 py-1.5 rounded-md text-xs font-black text-slate-400 hover:text-white font-militar uppercase';
+      $('btn-aer-corrida').className = modo === 'corrida' ? ativo : inativo;
+      $('btn-aer-marcha').className = modo === 'marcha' ? ativo : inativo;
+      $('box-corrida').classList.toggle('hidden', modo !== 'corrida');
+      $('box-marcha').classList.toggle('hidden', modo !== 'marcha');
+      calcularTACFTela();
     }
 
     /* =====================================================================
@@ -1202,10 +1600,22 @@
       }
     }
 
+    let wakeLock = null;
+    async function manterTelaAcesa(ligar) {
+      try {
+        if (ligar && 'wakeLock' in navigator && !wakeLock) {
+          wakeLock = await navigator.wakeLock.request('screen');
+          wakeLock.addEventListener('release', () => { wakeLock = null; });
+        } else if (!ligar && wakeLock) { await wakeLock.release(); wakeLock = null; }
+      } catch (e) { wakeLock = null; }
+    }
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && isRunning) manterTelaAcesa(true); });
+
     function startCronometer() {
       if (isRunning) return;
       isRunning = true;
       cronStartTime = Date.now() - cronElapsedTime;
+      manterTelaAcesa(true);
       cronInterval = setInterval(() => {
         cronElapsedTime = Date.now() - cronStartTime;
         updateCronometer();
@@ -1222,6 +1632,7 @@
       if (!isRunning) return;
       isRunning = false;
       clearInterval(cronInterval);
+      manterTelaAcesa(false);
       document.getElementById('btn-cron-start').disabled = false;
       document.getElementById('btn-cron-start').classList.remove('opacity-40');
       document.getElementById('btn-cron-pause').disabled = true;
@@ -1282,122 +1693,101 @@
        INICIALIZAÇÃO DE EVENTOS
        ===================================================================== */
     window.addEventListener('DOMContentLoaded', () => {
-      setupTwoWayBinding('range-flexao', 'input-flexao', calcularTACF);
-      setupTwoWayBinding('range-abdominal', 'input-abdominal', calcularTACF);
-      setupTwoWayBinding('range-corrida', 'input-corrida', calcularTACF);
+      setupTwoWayBinding('range-cintura', 'input-cintura');
+      setupTwoWayBinding('range-flexao', 'input-flexao');
+      setupTwoWayBinding('range-abdominal', 'input-abdominal');
+      setupTwoWayBinding('range-corrida', 'input-corrida');
+      ['input-idade', 'input-estatura', 'input-marcha-min', 'input-marcha-seg', 'chk-transicao',
+       'militar-posto', 'militar-nome', 'militar-om', 'militar-saram']
+        .forEach(id => $(id).addEventListener('input', calcularTACFTela));
+      $('chk-transicao').addEventListener('change', calcularTACFTela);
 
-      const btnSexM = document.getElementById('btn-sex-m');
-      const btnSexF = document.getElementById('btn-sex-f');
+      $('btn-sex-m').addEventListener('click', () => setSexo('M'));
+      $('btn-sex-f').addEventListener('click', () => setSexo('F'));
+      $('btn-aer-corrida').addEventListener('click', () => setAerobico('corrida'));
+      $('btn-aer-marcha').addEventListener('click', () => setAerobico('marcha'));
 
-      btnSexM.addEventListener('click', () => {
-        currentGender = 'masculino';
-        btnSexM.className = 'py-2.5 px-3 rounded-lg border text-sm font-bold transition-all flex items-center justify-center gap-2 bg-blue-600 text-white border-blue-400 shadow-lg';
-        btnSexF.className = 'py-2.5 px-3 rounded-lg border text-sm font-bold transition-all flex items-center justify-center gap-2 bg-slate-900 text-slate-300 border-slate-700 hover:bg-slate-800';
-        atualizarBadgesMinimos();
-        calcularTACF();
+      $('btn-calcular').addEventListener('click', () => {
+        calcularTACFTela();
+        $('card-resultado').scrollIntoView({ behavior: 'smooth', block: window.innerWidth < 1024 ? 'start' : 'nearest' });
       });
 
-      btnSexF.addEventListener('click', () => {
-        currentGender = 'feminino';
-        btnSexF.className = 'py-2.5 px-3 rounded-lg border text-sm font-bold transition-all flex items-center justify-center gap-2 bg-pink-600 text-white border-pink-400 shadow-lg';
-        btnSexM.className = 'py-2.5 px-3 rounded-lg border text-sm font-bold transition-all flex items-center justify-center gap-2 bg-slate-900 text-slate-300 border-slate-700 hover:bg-slate-800';
-        atualizarBadgesMinimos();
-        calcularTACF();
+      $('btn-preencher-exemplo').addEventListener('click', () => {
+        $('militar-nome').value = '3S Samuel Potter';
+        $('militar-saram').value = '7654321';
+        $('input-idade').value = 29;
+        $('input-estatura').value = 175;
+        const set = (base, v) => { $('input-' + base).value = v; $('range-' + base).value = v; };
+        set('cintura', 84);
+        set('flexao', 42);
+        set('abdominal', 52);
+        set('corrida', 2750);
+        setSexo('M');
+        setAerobico('corrida');
       });
 
-      document.getElementById('select-faixa-etaria').addEventListener('change', (e) => {
-        currentAgeGroup = e.target.value;
-        atualizarBadgesMinimos();
-        calcularTACF();
-      });
+      $('btn-cron-start').addEventListener('click', startCronometer);
+      $('btn-cron-pause').addEventListener('click', pauseCronometer);
+      $('btn-cron-reset').addEventListener('click', resetCronometer);
+      $('btn-cron-volta').addEventListener('click', addLap);
 
-      document.getElementById('btn-calcular').addEventListener('click', () => {
-        calcularTACF();
-        document.getElementById('card-resultado').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      });
-
-      document.getElementById('btn-preencher-exemplo').addEventListener('click', () => {
-        document.getElementById('militar-nome').value = '3S Samuel Potter';
-        document.getElementById('militar-saram').value = '7654321';
-        document.getElementById('input-flexao').value = 42;
-        document.getElementById('range-flexao').value = 42;
-        document.getElementById('input-abdominal').value = 52;
-        document.getElementById('range-abdominal').value = 52;
-        document.getElementById('input-corrida').value = 2750;
-        document.getElementById('range-corrida').value = 2750;
-        calcularTACF();
-      });
-
-      const tabMasc = document.getElementById('tab-btn-masc');
-      const tabFem = document.getElementById('tab-btn-fem');
-      tabMasc.addEventListener('click', () => {
-        tabMasc.className = 'px-4 py-2 rounded-lg text-xs font-black transition-all bg-amber-500 text-slate-950 font-militar uppercase';
-        tabFem.className = 'px-4 py-2 rounded-lg text-xs font-black transition-all text-slate-400 hover:text-white font-militar uppercase';
-        renderizarTabelaIndices('masculino');
-      });
-      tabFem.addEventListener('click', () => {
-        tabFem.className = 'px-4 py-2 rounded-lg text-xs font-black transition-all bg-amber-500 text-slate-950 font-militar uppercase';
-        tabMasc.className = 'px-4 py-2 rounded-lg text-xs font-black transition-all text-slate-400 hover:text-white font-militar uppercase';
-        renderizarTabelaIndices('feminino');
-      });
-
-      document.getElementById('btn-cron-start').addEventListener('click', startCronometer);
-      document.getElementById('btn-cron-pause').addEventListener('click', pauseCronometer);
-      document.getElementById('btn-cron-reset').addEventListener('click', resetCronometer);
-      document.getElementById('btn-cron-volta').addEventListener('click', addLap);
-
-      document.getElementById('btn-transferir-corrida').addEventListener('click', () => {
+      $('btn-transferir-corrida').addEventListener('click', () => {
         const totalDistance = laps.length * 400;
         if (totalDistance > 0) {
-          document.getElementById('input-corrida').value = totalDistance;
-          document.getElementById('range-corrida').value = totalDistance;
-          calcularTACF();
-          document.getElementById('simulador').scrollIntoView({ behavior: 'smooth' });
+          $('input-corrida').value = totalDistance;
+          $('range-corrida').value = totalDistance;
+          setAerobico('corrida');
+          $('simulador').scrollIntoView({ behavior: 'smooth' });
         } else {
-          const btn = document.getElementById('btn-transferir-corrida');
+          const btn = $('btn-transferir-corrida');
           const original = btn.innerText;
           btn.innerText = 'Registre ao menos 1 volta para transferir!';
           setTimeout(() => { btn.innerText = original; }, 2200);
         }
       });
 
-      document.getElementById('btn-copiar-resumo').addEventListener('click', () => {
-        const nome = document.getElementById('militar-nome').value || 'Militar Avaliado';
-        const grau = document.getElementById('resultado-grau').innerText;
-        const mencao = document.getElementById('resultado-mencao').innerText;
-        const flex = document.getElementById('input-flexao').value;
-        const abd = document.getElementById('input-abdominal').value;
-        const cor = document.getElementById('input-corrida').value;
-        
-        const texto = `*GAP-CO - AVALIAÇÃO TACF (NSCA 54-3)*\n` +
+      $('btn-copiar-resumo').addEventListener('click', () => {
+        const { e, r } = calcularTACFTela();
+        const nome = $('militar-nome').value || 'Militar Avaliado';
+        const linhas = ITENS.map(({ chave, nome: n }) => `${n}: ${valorTexto(chave, e)} → ${fmt1(r.pontos[chave])}/${MAXIMOS[chave]} pts`);
+        const texto = `*GAP-CO - TACF 2025 (NSCA 54-3/2026)*\n` +
                       `Militar: ${nome}\n` +
-                      `Flexão: ${flex} reps\n` +
-                      `Abdominal: ${abd} reps\n` +
-                      `Corrida 12 min: ${cor} m\n` +
-                      `Grau Final: ${grau} / 100\n` +
-                      `${mencao}\nParecer: ${document.getElementById('badge-status').innerText}`;
-
-        const tempInput = document.createElement('textarea');
-        tempInput.value = texto;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        document.execCommand('copy');
-        document.body.removeChild(tempInput);
-
-        const msg = document.getElementById('copiado-msg');
-        msg.classList.remove('hidden');
-        setTimeout(() => msg.classList.add('hidden'), 2500);
+                      `Perfil: ${e.sexo === 'M' ? 'Masculino' : 'Feminino'}, ${e.idade} anos, ${e.estatura} cm\n` +
+                      linhas.join('\n') + '\n' +
+                      `Grau Final: ${fmt1(r.grau)} / 100\n` +
+                      `Menção: ${MENCOES[r.mencao].rotulo}\n` +
+                      `Parecer: ${r.apto ? 'APTO' : 'NÃO APTO'}`;
+        const mostrar = () => { $('copiado-msg').classList.remove('hidden'); setTimeout(() => $('copiado-msg').classList.add('hidden'), 2500); };
+        const fallback = () => {
+          const t = document.createElement('textarea');
+          t.value = texto; document.body.appendChild(t); t.select();
+          document.execCommand('copy'); document.body.removeChild(t); mostrar();
+        };
+        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(texto).then(mostrar, fallback);
+        else fallback();
       });
 
-      const mobBtn = document.getElementById('mobile-menu-btn');
-      const mobMenu = document.getElementById('mobile-menu');
-      mobBtn.addEventListener('click', () => {
-        mobMenu.classList.toggle('hidden');
+      // Menu do celular: abre/fecha e fecha ao escolher um item
+      const menu = $('mobile-menu'), menuBtn = $('mobile-menu-btn');
+      menuBtn.addEventListener('click', () => {
+        const aberto = menu.classList.toggle('hidden') === false;
+        menuBtn.setAttribute('aria-expanded', String(aberto));
       });
+      menu.querySelectorAll('a, button').forEach(el => el.addEventListener('click', () => {
+        menu.classList.add('hidden'); menuBtn.setAttribute('aria-expanded', 'false');
+      }));
+      window.addEventListener('resize', () => { if (window.innerWidth >= 1280) menu.classList.add('hidden'); });
 
-      renderizarTabelaIndices('masculino');
-      atualizarBadgesMinimos();
-      calcularTACF();
+      // Barra de resultado: leva ao parecer e some quando ele já está na tela
+      $('barra-mobile-btn').addEventListener('click', () => $('card-resultado').scrollIntoView({ behavior: 'smooth', block: 'start' }));
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(([en]) => {
+          $('barra-mobile').style.transform = en.isIntersecting ? 'translateY(110%)' : '';
+        }, { threshold: 0.15 }).observe($('card-resultado'));
+        $('barra-mobile').style.transition = 'transform .25s ease';
+      }
+
+      calcularTACFTela();
     });
   </script>
 </body>
