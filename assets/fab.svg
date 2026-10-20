@@ -1,40 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Gládio alado da Força Aérea Brasileira">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 210" role="img" aria-label="Gládio alado da Força Aérea Brasileira">
   <defs>
-    <linearGradient id="prata" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#FFFFFF"/>
-      <stop offset="0.35" stop-color="#C9D0D8"/>
-      <stop offset="0.55" stop-color="#EEF1F4"/>
-      <stop offset="0.8" stop-color="#9AA4AE"/>
-      <stop offset="1" stop-color="#DDE2E7"/>
+    <linearGradient id="prata" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset="0.3" stop-color="#C3CAD2"/>
+      <stop offset="0.55" stop-color="#F1F3F5"/><stop offset="0.8" stop-color="#8A949E"/>
+      <stop offset="1" stop-color="#D3D8DD"/>
     </linearGradient>
-    <linearGradient id="lamina" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#B8C0C9"/>
-      <stop offset="0.5" stop-color="#FFFFFF"/>
-      <stop offset="1" stop-color="#8E98A3"/>
-    </linearGradient>
-    <g id="asa" fill="url(#prata)" stroke="#7D8792" stroke-width="1.6" stroke-linejoin="round">
-      <path d="M212,240 Q300,170 378,132 Q306,186 298,210 Q262,236 212,262 Z"/>
-      <path d="M214,238 Q295,175 375,140 Q301,199 214,252 Z"/>
-      <path d="M214,240 Q292,190 370,170 Q298,214 214,254 Z"/>
-      <path d="M214,242 Q287,204 360,198 Q293,228 214,256 Z"/>
-      <path d="M214,244 Q280,216 345,222 Q286,240 214,258 Z"/>
-      <path d="M214,246 Q270,226 325,242 Q276,250 214,260 Z"/>
-      <path d="M214,248 Q257,234 300,258 Q263,258 214,262 Z"/>
-      <path d="M210,232 Q252,196 318,168 Q282,214 210,258 Z" opacity="0.9"/>
+    <linearGradient id="claro" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#C7CED5"/></linearGradient>
+    <linearGradient id="escuro" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9AA4AE"/><stop offset="1" stop-color="#5F6973"/></linearGradient>
+    <g id="asa">
+      <g fill="url(#prata)" stroke="#55606B" stroke-width="0.9" stroke-linejoin="round">
+        <path d="M160,121.0 Q192,117 221,122 A7,7 0 0 1 218,135 Q196,147 160,147.0 Z"/><path class="hl" d="M168,130.0 Q192,128 212,129"/><path d="M160,108.5 Q207,103 251,107 A7,7 0 0 1 248,120 Q211,133 160,134.5 Z"/><path class="hl" d="M168,117.5 Q207,114 242,114"/><path d="M160,96.0 Q217,84 271,88 A7,7 0 0 1 268,101 Q221,118 160,122.0 Z"/><path class="hl" d="M168,105.0 Q217,98 262,95"/><path d="M160,83.5 Q222,62 282,66 A7,7 0 0 1 279,79 Q226,100 160,109.5 Z"/><path class="hl" d="M168,92.5 Q222,81 273,73"/><path d="M160,71.0 Q224,39 284,43 A7,7 0 0 1 281,56 Q228,82 160,97.0 Z"/><path class="hl" d="M168,80.0 Q224,63 275,50"/><path d="M160,58.5 Q219,17 275,21 A7,7 0 0 1 272,34 Q223,65 160,84.5 Z"/><path class="hl" d="M168,67.5 Q219,46 266,28"/><path d="M160,46.0 Q209,-8 255,2 A7,7 0 0 1 252,15 Q213,50 160,72.0 Z"/><path class="hl" d="M168,55.0 Q209,30 246,9"/>
+        <path d="M157,60 Q190,14 256,4 Q226,30 160,82 Z"/>
+      </g>
     </g>
+    <style>.hl{fill:none;stroke:#FFFFFF;stroke-width:0.8;opacity:0.7}</style>
   </defs>
-  <circle cx="200" cy="215" r="188" fill="none" stroke="url(#prata)" stroke-width="5" opacity="0.8"/>
-  <circle cx="200" cy="215" r="176" fill="none" stroke="url(#prata)" stroke-width="1.5" opacity="0.6"/>
   <use href="#asa"/>
-  <use href="#asa" transform="translate(400,0) scale(-1,1)"/>
-  <!-- Lâmina (ponta para cima) -->
-  <path d="M200,22 L213,56 L213,232 L187,232 L187,56 Z" fill="url(#lamina)" stroke="#7D8792" stroke-width="1.6" stroke-linejoin="round"/>
-  <line x1="200" y1="48" x2="200" y2="226" stroke="#8E98A3" stroke-width="2"/>
-  <!-- Guarda, punho e pomo -->
-  <rect x="158" y="230" width="84" height="14" rx="6" fill="url(#prata)" stroke="#7D8792" stroke-width="1.6"/>
-  <rect x="191" y="244" width="18" height="62" rx="4" fill="url(#lamina)" stroke="#7D8792" stroke-width="1.6"/>
-  <path d="M191,258 L209,264 M191,272 L209,278 M191,286 L209,292" stroke="#8E98A3" stroke-width="1.4"/>
-  <circle cx="200" cy="318" r="14" fill="url(#prata)" stroke="#7D8792" stroke-width="1.6"/>
-  <!-- Estrela -->
-  <path d="M200,346 l6.5,13.2 14.5,2.1 -10.5,10.2 2.5,14.5 -13,-6.8 -13,6.8 2.5,-14.5 -10.5,-10.2 14.5,-2.1 Z" fill="url(#prata)" stroke="#7D8792" stroke-width="1.2"/>
+  <use href="#asa" transform="translate(300,0) scale(-1,1)"/>
+  <!-- Lâmina: metade clara / metade escura, ponta para cima -->
+  <path d="M150,4 L150,136 L142,136 L142,22 Z" fill="url(#claro)" stroke="#55606B" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M150,4 L158,22 L158,136 L150,136 Z" fill="url(#escuro)" stroke="#55606B" stroke-width="0.9" stroke-linejoin="round"/>
+  <!-- Guarda com estrela -->
+  <rect x="120" y="134" width="60" height="13" rx="3" fill="url(#prata)" stroke="#55606B" stroke-width="0.9"/>
+  <rect x="138" y="128" width="24" height="25" rx="3" fill="url(#prata)" stroke="#55606B" stroke-width="0.9"/>
+  <path d="M150,132.5 l2.6,5.3 5.8,0.8 -4.2,4.1 1,5.8 -5.2,-2.7 -5.2,2.7 1,-5.8 -4.2,-4.1 5.8,-0.8 Z" fill="#E9EDF1" stroke="#55606B" stroke-width="0.8"/>
+  <!-- Punho espiralado e pomo -->
+  <rect x="144" y="153" width="12" height="40" rx="2" fill="url(#escuro)" stroke="#55606B" stroke-width="0.9"/>
+  <path d="M144,158 L156,153 M144,164 L156,159 M144,170 L156,165 M144,176 L156,171 M144,182 L156,177 M144,188 L156,183 M144,193 L156,189" stroke="#E4E8EC" stroke-width="1.6"/>
+  <rect x="140" y="192" width="20" height="9" rx="3" fill="url(#prata)" stroke="#55606B" stroke-width="0.9"/>
 </svg>

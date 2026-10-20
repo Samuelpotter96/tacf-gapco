@@ -43,7 +43,7 @@ body {
 
 /* Cabeçalho */
 .topo { text-align: center; padding: 40px 16px 24px; }
-.topo-logo { width: 84px; height: 84px; filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.5)); margin-bottom: 12px; }
+.topo-logo { width: 130px; height: auto; filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.5)); margin-bottom: 12px; }
 .topo-om { font-size: 13px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--prata); font-weight: 600; }
 .topo h1 {
   font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
@@ -171,7 +171,7 @@ button:focus-visible { outline: 2px solid var(--azul-claro); outline-offset: 2px
 
 @media (max-width: 600px) {
   .topo { padding-top: 28px; }
-  .topo-logo { width: 68px; height: 68px; }
+  .topo-logo { width: 104px; height: auto; }
   .card { padding: 18px 14px; border-radius: 14px; }
   .grade { grid-template-columns: 1fr; gap: 16px; }
   .res-status { align-items: flex-start; }
